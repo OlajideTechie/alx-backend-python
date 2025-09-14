@@ -38,7 +38,7 @@ def setup_sample_database():
             sample_users
         )
         
-        print("🎯 Async sample database created with user data")
+        print("Async sample database created with user data")
 
 # Asynchronous function to fetch all users
 async def async_fetch_users():
@@ -48,7 +48,7 @@ async def async_fetch_users():
     Returns:
         list: All user records from the database
     """
-    print("📊 Starting async_fetch_users...")
+    print(" Starting async_fetch_users...")
     start_time = datetime.now()
     
     try:
@@ -63,16 +63,16 @@ async def async_fetch_users():
             end_time = datetime.now()
             duration = (end_time - start_time).total_seconds()
             
-            print(f"✅ async_fetch_users completed in {duration:.3f}s")
-            print(f"📋 Retrieved {len(results)} total users")
+            print(f" async_fetch_users completed in {duration:.3f}s")
+            print(f" Retrieved {len(results)} total users")
             
             return results
             
     except aiosqlite.Error as e:
-        print(f"❌ Database error in async_fetch_users: {e}")
+        print(f" Database error in async_fetch_users: {e}")
         return []
     except Exception as e:
-        print(f"❌ Unexpected error in async_fetch_users: {e}")
+        print(f" Unexpected error in async_fetch_users: {e}")
         return []
 
 # Asynchronous function to fetch users older than 40
@@ -83,13 +83,13 @@ async def async_fetch_older_users():
     Returns:
         list: User records where age > 40
     """
-    print("🔍 Starting async_fetch_older_users...")
+    print(" Starting async_fetch_older_users...")
     start_time = datetime.now()
     
     try:
         # Connect to database asynchronously
         async with aiosqlite.connect('async_users.db') as db:
-            print("🔗 Connected to database for fetching older users")
+            print(" Connected to database for fetching older users")
             
             # Execute parameterized query asynchronously
             async with db.execute("SELECT * FROM users WHERE age > ? ORDER BY age DESC", (40,)) as cursor:
@@ -98,16 +98,16 @@ async def async_fetch_older_users():
             end_time = datetime.now()
             duration = (end_time - start_time).total_seconds()
             
-            print(f"✅ async_fetch_older_users completed in {duration:.3f}s")
-            print(f"👴 Retrieved {len(results)} users older than 40")
+            print(f" async_fetch_older_users completed in {duration:.3f}s")
+            print(f" Retrieved {len(results)} users older than 40")
             
             return results
             
     except aiosqlite.Error as e:
-        print(f"❌ Database error in async_fetch_older_users: {e}")
+        print(f" Database error in async_fetch_older_users: {e}")
         return []
     except Exception as e:
-        print(f"❌ Unexpected error in async_fetch_older_users: {e}")
+        print(f" Unexpected error in async_fetch_older_users: {e}")
         return []
 
 # Main concurrent execution function
@@ -118,7 +118,7 @@ async def fetch_concurrently():
     Returns:
         tuple: Results from both async functions
     """
-    print("\n🚀 Starting concurrent database operations...")
+    print("\n Starting concurrent database operations...")
     print("=" * 60)
     
     overall_start = datetime.now()
@@ -134,21 +134,21 @@ async def fetch_concurrently():
         total_duration = (overall_end - overall_start).total_seconds()
         
         print("=" * 60)
-        print(f"🎯 Both operations completed concurrently in {total_duration:.3f}s")
+        print(f" Both operations completed concurrently in {total_duration:.3f}s")
         
         # Display results
-        print(f"\n📊 RESULTS SUMMARY:")
-        print(f"📋 Total users found: {len(all_users)}")
-        print(f"👴 Users over 40: {len(older_users)}")
+        print(f"\n RESULTS SUMMARY:")
+        print(f" Total users found: {len(all_users)}")
+        print(f" Users over 40: {len(older_users)}")
         
         # Display all users
-        print(f"\n📋 ALL USERS ({len(all_users)} records):")
+        print(f"\n ALL USERS ({len(all_users)} records):")
         print("-" * 70)
         for user_id, name, email, age in all_users:
             print(f"ID: {user_id:2d} | Name: {name:<15} | Email: {email:<20} | Age: {age:2d}")
         
         # Display older users
-        print(f"\n👴 USERS OLDER THAN 40 ({len(older_users)} records):")
+        print(f"\n USERS OLDER THAN 40 ({len(older_users)} records):")
         print("-" * 70)
         if older_users:
             for user_id, name, email, age in older_users:
@@ -159,7 +159,7 @@ async def fetch_concurrently():
         return all_users, older_users
         
     except Exception as e:
-        print(f"❌ Error during concurrent execution: {e}")
+        print(f" Error during concurrent execution: {e}")
         return [], []
 
 # Additional demonstration: Show timing comparison
@@ -168,11 +168,11 @@ async def demonstrate_timing_benefits():
     Demonstrate the performance benefits of concurrent execution
     """
     print("\n" + "=" * 60)
-    print("⏱️  TIMING COMPARISON: Sequential vs Concurrent")
+    print(" TIMING COMPARISON: Sequential vs Concurrent")
     print("=" * 60)
     
     # Sequential execution
-    print("\n1️⃣ SEQUENTIAL EXECUTION:")
+    print("\nSEQUENTIAL EXECUTION:")
     sequential_start = datetime.now()
     
     users_sequential = await async_fetch_users()
@@ -180,13 +180,13 @@ async def demonstrate_timing_benefits():
     
     sequential_end = datetime.now()
     sequential_time = (sequential_end - sequential_start).total_seconds()
-    print(f"📏 Sequential execution total time: {sequential_time:.3f}s")
+    print(f" Sequential execution total time: {sequential_time:.3f}s")
     
     # Small delay to separate the tests
     await asyncio.sleep(0.1)
     
     # Concurrent execution
-    print("\n2️⃣ CONCURRENT EXECUTION:")
+    print("\n CONCURRENT EXECUTION:")
     concurrent_start = datetime.now()
     
     users_concurrent, older_users_concurrent = await asyncio.gather(
@@ -196,12 +196,12 @@ async def demonstrate_timing_benefits():
     
     concurrent_end = datetime.now()
     concurrent_time = (concurrent_end - concurrent_start).total_seconds()
-    print(f"🚀 Concurrent execution total time: {concurrent_time:.3f}s")
+    print(f"Concurrent execution total time: {concurrent_time:.3f}s")
     
     # Calculate improvement
     if sequential_time > 0:
         improvement = ((sequential_time - concurrent_time) / sequential_time) * 100
-        print(f"\n📈 Performance improvement: {improvement:.1f}% faster with concurrent execution")
+        print(f"\n Performance improvement: {improvement:.1f}% faster with concurrent execution")
 
 # Example of more complex concurrent operations
 async def complex_concurrent_operations():
@@ -247,7 +247,7 @@ async def complex_concurrent_operations():
         get_age_distribution()
     )
     
-    print(f"📊 User Statistics:")
+    print(f" User Statistics:")
     print(f"   Total Users: {count}")
     print(f"   Average Age: {avg_age}")
     print(f"   Age Distribution:")
@@ -258,7 +258,7 @@ async def complex_concurrent_operations():
 def main():
     """Main function to run all async operations"""
     print("=" * 70)
-    print("🔄 AIOSQLITE ASYNC DATABASE OPERATIONS")
+    print(" AIOSQLITE ASYNC DATABASE OPERATIONS")
     print("=" * 70)
     
     # Setup database
@@ -276,7 +276,7 @@ def main():
     
     # Show the exact usage pattern
     print("\n" + "=" * 50)
-    print("💡 USAGE PATTERN:")
+    print(" USAGE PATTERN:")
     print("=" * 50)
     print("# The main functions as requested:")
     print("asyncio.run(fetch_concurrently())")

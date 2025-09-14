@@ -35,10 +35,10 @@ class ExecuteQuery:
             # Establish database connection
             self.connection = sqlite3.connect(self.database_path)
             self.cursor = self.connection.cursor()
-            print("✅ Database connection established")
+            print(" Database connection established")
             
             # Execute the query with parameters
-            print(f"📊 Executing query: {self.query}")
+            print(f" Executing query: {self.query}")
             if self.parameters:
                 print(f"🔧 With parameters: {self.parameters}")
                 self.cursor.execute(self.query, self.parameters)
@@ -47,18 +47,18 @@ class ExecuteQuery:
             
             # Fetch and store results
             self.results = self.cursor.fetchall()
-            print(f"✅ Query executed successfully - {len(self.results)} rows retrieved")
+            print(f" Query executed successfully - {len(self.results)} rows retrieved")
             
             return self.results
             
         except sqlite3.Error as e:
-            print(f"❌ Database error during query execution: {e}")
+            print(f" Database error during query execution: {e}")
             # Clean up on error
             if self.connection:
                 self.connection.close()
             raise
         except Exception as e:
-            print(f"❌ Unexpected error: {e}")
+            print(f" Unexpected error: {e}")
             # Clean up on error
             if self.connection:
                 self.connection.close()
@@ -80,25 +80,25 @@ class ExecuteQuery:
             # Close cursor if it exists
             if self.cursor:
                 self.cursor.close()
-                print("🔒 Database cursor closed")
+                print(" Database cursor closed")
             
             # Handle connection cleanup
             if self.connection:
                 if exc_type is None:
                     # No errors - commit any pending changes
                     self.connection.commit()
-                    print("✅ Database changes committed")
+                    print(" Database changes committed")
                 else:
                     # Error occurred - rollback changes
                     self.connection.rollback()
-                    print(f"⚠️  Database changes rolled back due to: {exc_value}")
+                    print(f"  Database changes rolled back due to: {exc_value}")
                 
                 # Always close the connection
                 self.connection.close()
-                print("🔒 Database connection closed")
+                print(" Database connection closed")
                 
         except sqlite3.Error as e:
-            print(f"❌ Error during cleanup: {e}")
+            print(f" Error during cleanup: {e}")
         
         # Return False to propagate any exceptions
         return False
@@ -144,7 +144,7 @@ def find_users_over_age():
         # Use the context manager to execute the parameterized query
         with ExecuteQuery('users.db', "SELECT * FROM users WHERE age > ?", (25,)) as results:
             
-            print(f"\n📋 Users over age 25 ({len(results)} found):")
+            print(f"\n Users over age 25 ({len(results)} found):")
             print("-" * 60)
             
             if results:
@@ -157,10 +157,10 @@ def find_users_over_age():
             return results
             
     except sqlite3.Error as e:
-        print(f"❌ Database operation failed: {e}")
+        print(f" Database operation failed: {e}")
         return None
     except Exception as e:
-        print(f"❌ Unexpected error occurred: {e}")
+        print(f" Unexpected error occurred: {e}")
         return None
 
 # Additional examples showing different query patterns
@@ -172,25 +172,25 @@ def example_different_queries():
     print("=" * 50)
     
     # Example 1: Query with different parameter
-    print("\n1️⃣ Finding users over age 30:")
+    print("\n1️ Finding users over age 30:")
     try:
         with ExecuteQuery('users.db', "SELECT name, age FROM users WHERE age > ?", (30,)) as results:
             for name, age in results:
                 print(f"   • {name} (Age: {age})")
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"    Error: {e}")
     
     # Example 2: Query without parameters
-    print("\n2️⃣ Getting all users (no parameters):")
+    print("\n2️ Getting all users (no parameters):")
     try:
         with ExecuteQuery('users.db', "SELECT COUNT(*) as total FROM users") as results:
             total = results[0][0] if results else 0
-            print(f"   📊 Total users in database: {total}")
+            print(f"    Total users in database: {total}")
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"    Error: {e}")
     
     # Example 3: Query with multiple parameters
-    print("\n3️⃣ Finding users in age range (25-35):")
+    print("\n3️ Finding users in age range (25-35):")
     try:
         with ExecuteQuery('users.db', 
                          "SELECT name, age FROM users WHERE age BETWEEN ? AND ?", 
@@ -198,14 +198,14 @@ def example_different_queries():
             for name, age in results:
                 print(f"   • {name} (Age: {age})")
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"    Error: {e}")
 
 # Example showing error handling
 def example_error_handling():
     """Demonstrate error handling in ExecuteQuery context manager"""
     
     print("\n" + "=" * 50)
-    print("⚠️  EXAMPLE: Error Handling")
+    print(" EXAMPLE: Error Handling")
     print("=" * 50)
     
     try:
@@ -213,7 +213,7 @@ def example_error_handling():
         with ExecuteQuery('users.db', "SELECT * FROM non_existent_table WHERE age > ?", (25,)) as results:
             print(f"Results: {results}")
     except sqlite3.Error as e:
-        print(f"✅ Error properly handled: {e}")
+        print(f"Error properly handled: {e}")
 
 if __name__ == "__main__":
     print("=" * 70)
@@ -225,7 +225,7 @@ if __name__ == "__main__":
     
     # Main objective: Execute "SELECT * FROM users WHERE age > ?" with parameter 25
     print("\n" + "=" * 40)
-    print("📖 PRIMARY OBJECTIVE: Find Users Over Age 25")
+    print(" PRIMARY OBJECTIVE: Find Users Over Age 25")
     print("=" * 40)
     users = find_users_over_age()
     
@@ -239,7 +239,7 @@ if __name__ == "__main__":
     
     # Show the exact usage pattern requested
     print("\n" + "=" * 40)
-    print("💡 EXACT USAGE AS REQUESTED:")
+    print(" EXACT USAGE AS REQUESTED:")
     print("=" * 40)
     print("with ExecuteQuery('users.db', 'SELECT * FROM users WHERE age > ?', (25,)) as results:")
     print("    # Results are automatically available")

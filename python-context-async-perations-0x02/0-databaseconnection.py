@@ -48,18 +48,18 @@ class DatabaseConnection:
                 if exc_type is None:
                     # No exception occurred, commit any pending transactions
                     self.connection.commit()
-                    print("✅ Transaction committed successfully")
+                    print(" Transaction committed successfully")
                 else:
                     # An exception occurred, rollback any pending transactions
                     self.connection.rollback()
-                    print(f"⚠️  Transaction rolled back due to exception: {exc_value}")
+                    print(f" Transaction rolled back due to exception: {exc_value}")
                 
                 # Always close the connection
                 self.connection.close()
-                print("🔒 Database connection closed")
+                print(" Database connection closed")
                 
             except sqlite3.Error as e:
-                print(f"❌ Error while closing database: {e}")
+                print(f" Error while closing database: {e}")
         
         # Return False to propagate any exceptions that occurred
         return False
@@ -70,12 +70,12 @@ def fetch_all_users():
     try:
         # Use the context manager with 'with' statement
         with DatabaseConnection('users.db') as conn:
-            print("\n📊 Executing query: SELECT * FROM users")
+            print("\nExecuting query: SELECT * FROM users")
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM users")
             results = cursor.fetchall()
             
-            print(f"📋 Query Results ({len(results)} rows):")
+            print(f"Query Results ({len(results)} rows):")
             print("-" * 50)
             
             if results:
@@ -87,9 +87,9 @@ def fetch_all_users():
             return results
             
     except sqlite3.Error as e:
-        print(f"❌ Database error occurred: {e}")
+        print(f" Database error occurred: {e}")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
 
 # Example usage with error handling
 def fetch_users_with_error_example():
@@ -104,7 +104,7 @@ def fetch_users_with_error_example():
             return results
             
     except sqlite3.Error as e:
-        print(f"❌ Caught database error: {e}")
+        print(f"Caught database error: {e}")
 
 # Advanced usage example with multiple operations
 def perform_multiple_operations():
@@ -117,17 +117,17 @@ def perform_multiple_operations():
         # Operation 1: Get table info
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = cursor.fetchall()
-        print(f"📋 Available tables: {[table[0] for table in tables]}")
+        print(f"Available tables: {[table[0] for table in tables]}")
         
         # Operation 2: Get user count
         cursor.execute("SELECT COUNT(*) FROM users")
         count = cursor.fetchone()[0]
-        print(f"👥 Total users: {count}")
+        print(f"Total users: {count}")
         
         # Operation 3: Get all users
         cursor.execute("SELECT * FROM users")
         users = cursor.fetchall()
-        print(f"📊 User details: {users}")
+        print(f"User details: {users}")
         
         return users
 
@@ -170,7 +170,7 @@ if __name__ == "__main__":
     
     # Primary objective: fetch users using context manager
     print("\n" + "=" * 30)
-    print("📖 PRIMARY: Query All Users")
+    print("PRIMARY: Query All Users")
     print("=" * 30)
     users = fetch_all_users()
     
@@ -182,7 +182,7 @@ if __name__ == "__main__":
     
     # Error handling demonstration
     print("\n" + "=" * 30)
-    print("⚠️  DEMO: Error Handling")
+    print("DEMO: Error Handling")
     print("=" * 30)
     fetch_users_with_error_example()
     
