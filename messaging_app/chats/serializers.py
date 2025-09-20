@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 # ------------------------
 class UserSerializer(serializers.ModelSerializer):
     
-    full_name = serializers.CharField(source="get_full_name", read_only=True) # Read-only field to get full name
+    full_name = serializers.SerializerMethodField() # Read-only field to get full name
     class Meta:
         model = CustomUser
         fields = [
@@ -54,7 +54,8 @@ class UserSerializer(serializers.ModelSerializer):
 # ------------------------
 class MessageSerializer(serializers.ModelSerializer):
     sender = UserSerializer(source="sender_id", read_only=True)
-    recipient = UserSerializer(read_only=True)                      
+    recipient = UserSerializer(read_only=True)    
+    message_body = serializers.CharField(max_length=1000, read_only=True)                  
 
     class Meta:
         model = Message
