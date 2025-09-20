@@ -115,20 +115,21 @@ class Review(models.Model):
 
 
 # ------------------------
-# MESSAGE MODEL
-# ------------------------
-class Message(models.Model):
-    message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
-    sender_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="sent_messages")
-    recipient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="received_messages")
-    message_body = models.TextField(null=False)
-    sent_at = models.DateTimeField(auto_now_add=True)
-
-
-# ------------------------
 # CONVERSATION MODEL
 # ------------------------
 class Conversation(models.Model):
     conversation_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
     participants_id = models.ManyToManyField(CustomUser, related_name="conversations")
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+# ------------------------
+# MESSAGE MODEL
+# ------------------------
+class Message(models.Model):
+    message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name="messages") 
+    sender_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="sent_messages")
+    recipient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="received_messages")
+    message_body = models.TextField(null=False)
+    sent_at = models.DateTimeField(auto_now_add=True)

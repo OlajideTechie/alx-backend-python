@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 # ------------------------
 class UserSerializer(serializers.ModelSerializer):
     
-    password = serializers.CharField(write_only=True, required=True, min_length=8)
+    full_name = serializers.SerializerMethodField()
     class Meta:
         model = CustomUser
         fields = [
@@ -20,11 +20,12 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "phone_number",
             "password",
+            "full_name",
             "role",
             "created_at",
         ]
         extra_kwargs = {
-            'password': {'required': True},
+            'password': {'required': True, 'write_only': True, 'min_length': 8},
             "first_name": {"required": True},
             "last_name": {"required": True},
             "email": {"required": True},
@@ -32,7 +33,9 @@ class UserSerializer(serializers.ModelSerializer):
             "phone_number": {"required": False},
         }
         
-    
+    def get_full_name(self, obj):
+        return f"{obj.first_name} {obj.last_name}".strip()
+        
     def validate_email(self, value):
         """Ensure the email is valid and unique."""
         value = value.strip().lower()
