@@ -2,6 +2,7 @@ from rest_framework import generics, status, viewsets, filters
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import AllowAny
 from .models import  (
     CustomUser, 
     Property, 
@@ -22,7 +23,18 @@ from .serializers import (
 )
 
 
-# Create your viewsets here.
+
+# User API ViewSet
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['email', 'username', 'first_name', 'last_name', 'password']
+    
+    def get_permissions(self):
+        if self.action == 'create':
+            return [AllowAny()]
+        return super().get_permissions()
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
