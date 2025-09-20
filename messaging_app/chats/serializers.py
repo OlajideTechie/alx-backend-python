@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 # ------------------------
 class UserSerializer(serializers.ModelSerializer):
     
-    full_name = serializers.SerializerMethodField()
+    full_name = serializers.CharField(source="get_full_name", read_only=True) # Read-only field to get full name
     class Meta:
         model = CustomUser
         fields = [
