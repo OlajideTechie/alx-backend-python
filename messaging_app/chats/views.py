@@ -1,4 +1,4 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, viewsets, filters
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
@@ -21,24 +21,21 @@ from .serializers import (
     ConversationSerializer,
 )
 
-# Create your views here.
 
-class ConversationListCreateView(generics.ListCreateAPIView):
+# Create your viewsets here.
+
+
+class ConversationViewSet(viewsets.ModelViewSet):
     queryset = Conversation.objects.all()
     serializer_class = ConversationSerializer
-    
-    """
-    Retrieve conversations for a specific user.
-    Requires 'user_id' as a query parameter.
-    Returns a list of conversations the user is part of.
-    Each conversation includes its participants and messages.
-    """
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['participants_id__user_id']
 
     def get_queryset(self):
         user_id = self.request.query_params.get('user_id')
-        if not user_id:
-            raise ValidationError("user_id is required.")
-        return self.queryset.filter(participants_id__user_id=user_id).distinct()
+        if user_id:
+            return self.queryset.filter(participants_id__user_id=user_id).distinct()
+        return self.queryset
 
     def perform_create(self, serializer):
         participants = self.request.data.get('participants', [])
@@ -51,30 +48,19 @@ class ConversationListCreateView(generics.ListCreateAPIView):
         conversation.participants_id.set(users)
         conversation.save()
         return conversation
-    
+
     @swagger_auto_schema(
         operation_description="Retrieve conversations for a specific user.",
         manual_parameters=[
             openapi.Parameter(
-                'user_id', openapi.IN_QUERY, description="ID of the user", type=openapi.TYPE_STRING, required=True
+                'user_id', openapi.IN_QUERY, description="ID of the user", type=openapi.TYPE_STRING, required=False
             ),
         ],
         responses={200: ConversationSerializer(many=True)},
     )
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs) 
-    
-    
-    """ 
-    Create a new conversation with participants.
-    Expected input:
-    {
-        "participants": ["user_id1", "user_id2", ...]
-    }
-    
-    Returns the created conversation with a 201 status code.
-    """
-    
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
     @swagger_auto_schema(
         operation_description="Create a new conversation with participants.",
         request_body=openapi.Schema(
@@ -90,21 +76,21 @@ class ConversationListCreateView(generics.ListCreateAPIView):
         ),
         responses={201: ConversationSerializer()},
     )
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)  
-    
-    
-    
-    
-class MessageListCreateView(generics.ListCreateAPIView):
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
+
+
+class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['conversation__conversation_id']
 
     def get_queryset(self):
         conversation_id = self.request.query_params.get('conversation_id')
-        if not conversation_id:
-            raise ValidationError("conversation_id is required.")
-        return self.queryset.filter(conversation__conversation_id=conversation_id).order_by('sent_at')
+        if conversation_id:
+            return self.queryset.filter(conversation__conversation_id=conversation_id).order_by('sent_at')
+        return self.queryset.order_by('sent_at')
 
     def perform_create(self, serializer):
         conversation_id = self.request.data.get('conversation_id')
@@ -130,33 +116,19 @@ class MessageListCreateView(generics.ListCreateAPIView):
             sent_at=timezone.now()
         )
         return message
-    
+
     @swagger_auto_schema(
         operation_description="Retrieve messages for a specific conversation.",
         manual_parameters=[
             openapi.Parameter(
-                'conversation_id', openapi.IN_QUERY, description="ID of the conversation", type=openapi.TYPE_STRING, required=True
+                'conversation_id', openapi.IN_QUERY, description="ID of the conversation", type=openapi.TYPE_STRING, required=False
             ),
         ],
         responses={200: MessageSerializer(many=True)},
     )
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs) 
-    
-    
-    """ 
-    Create a new message in a conversation.
-    Expected input:
-    {
-        "conversation_id": "conversation_uuid",
-        "sender_id": "user_uuid",
-        "recipient_id": "user_uuid",
-        "message_body": "Your message here"
-    }
-    
-    Returns the created message with a 201 status code.
-    """
-    
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
     @swagger_auto_schema(
         operation_description="Create a new message in a conversation.",
         request_body=openapi.Schema(
@@ -171,7 +143,7 @@ class MessageListCreateView(generics.ListCreateAPIView):
         ),
         responses={201: MessageSerializer()},
     )
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)      
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
 
 
