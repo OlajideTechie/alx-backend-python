@@ -1,6 +1,7 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, status
 from rest_framework.exceptions import ValidationError
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
@@ -8,6 +9,7 @@ from drf_yasg import openapi
 
 from .models import CustomUser, Conversation, Message
 from .serializers import UserSerializer, MessageSerializer, ConversationSerializer
+from .permissions import IsOwner, IsParticipantOfConversation
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -35,6 +37,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ["participants_id__user_id"]
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
 
     def get_queryset(self):
         user_id = self.request.query_params.get("user_id")
@@ -78,12 +81,13 @@ class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ["conversation__conversation_id"]
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
 
     def get_queryset(self):
         conversation_id = self.request.query_params.get("conversation_id")
         if conversation_id:
-            return self.queryset.filter(conversation__conversation_id=conversation_id).order_by("sent_at")
-        return self.queryset.order_by("sent_at")
+            return Message.objects.filter(conversation__conversation_id=conversation_id).order_by("sent_at")
+        return Message.objects.all().order_by("sent_at")
 
     def perform_create(self, serializer):
         conversation_id = self.request.data.get("conversation_id")
@@ -99,7 +103,10 @@ class MessageViewSet(viewsets.ModelViewSet):
         recipient = get_object_or_404(CustomUser, user_id=recipient_id)
 
         if sender not in conversation.participants_id.all() or recipient not in conversation.participants_id.all():
-            raise ValidationError("Both sender and recipient must be participants in the conversation.")
+            return Response(
+                {"detail": "Both sender and recipient must be participants in the conversation."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
 
         serializer.save(
             conversation=conversation,
