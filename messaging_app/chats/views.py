@@ -16,6 +16,7 @@ from .pagination import MessagePagination
 class CustomUserViewSet(viewsets.ModelViewSet):
     """
     API endpoint for managing users.
+    Allows unauthenticated creation of users.
     """
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
@@ -25,20 +26,19 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action == "create":
             return [AllowAny()]
-        return super().get_permissions()
-    
-    
+        return [IsAuthenticated()]
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
     """
     API endpoint for managing conversations.
+    Only authenticated users who are participants can access.
     """
     queryset = Conversation.objects.all()
     serializer_class = ConversationSerializer
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     filter_backends = [filters.SearchFilter]
     search_fields = ["participants_id__user_id"]
-    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
 
     def get_queryset(self):
         user_id = self.request.query_params.get("user_id")
@@ -47,48 +47,37 @@ class ConversationViewSet(viewsets.ModelViewSet):
         return self.queryset
 
     def perform_create(self, serializer):
-        participants = self.request.data.get("participants", [])
-        if not participants or len(participants) < 2:
-            raise ValidationError("At least two participants are required to create a conversation.")
-        users = CustomUser.objects.filter(user_id__in=participants)
-        if users.count() != len(participants):
-            raise ValidationError("One or more participant IDs are invalid.")
-        conversation = serializer.save()
-        conversation.participants_id.set(users)
-        conversation.save()
+        participants_ids = self.request.data.get("participants_ids", [])
+        if not participants_ids or len(participants_ids) < 2:
+            raise ValidationError("At least two participants are required.")
 
-    @swagger_auto_schema(
-        operation_description="Retrieve conversations for a specific user.",
-        manual_parameters=[
-            openapi.Parameter(
-                "user_id",
-                openapi.IN_QUERY,
-                description="ID of the user",
-                type=openapi.TYPE_STRING,
-                required=False,
-            ),
-        ],
-        responses={200: ConversationSerializer(many=True)},
-    )
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
+        participants_qs = CustomUser.objects.filter(user_id__in=participants_ids)
+        if participants_qs.count() != len(participants_ids):
+            raise ValidationError("One or more participant IDs are invalid.")
+
+        conversation = serializer.save()
+        conversation.participants_id.set(participants_qs)
+        conversation.save()
 
 
 class MessageViewSet(viewsets.ModelViewSet):
     """
     API endpoint for managing messages in conversations.
+    Only participants can view, create, update, or delete messages.
     """
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     filter_backends = [filters.SearchFilter]
     search_fields = ["conversation__conversation_id"]
-    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     pagination_class = MessagePagination
 
     def get_queryset(self):
         conversation_id = self.request.query_params.get("conversation_id")
         if conversation_id:
-            return Message.objects.filter(conversation__conversation_id=conversation_id).order_by("sent_at")
+            return Message.objects.filter(
+                conversation__conversation_id=conversation_id
+            ).order_by("sent_at")
         return Message.objects.all().order_by("sent_at")
 
     def perform_create(self, serializer):
