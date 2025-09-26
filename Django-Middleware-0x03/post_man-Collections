@@ -1,0 +1,2055 @@
+{
+	"info": {
+		"_postman_id": "abc9b2e8-6ce8-44e8-957a-1cf7e617c50a",
+		"name": "Messaging API",
+		"description": "API documentation for Messaging App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10454653",
+		"_collection_link": "https://dark-station-168284.postman.co/workspace/Test~40b75cd6-58d4-4f8b-8b33-8ec4e7627e8a/collection/10454653-abc9b2e8-6ce8-44e8-957a-1cf7e617c50a?action=share&source=collection_link&creator=10454653"
+	},
+	"item": [
+		{
+			"name": "conversations",
+			"item": [
+				{
+					"name": "{conversation_id}",
+					"item": [
+						{
+							"name": "conversations read",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/conversations/:conversation_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversations",
+										":conversation_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "conversation_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this conversation."
+										}
+									]
+								},
+								"description": "API endpoint for managing conversations."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/conversations/:conversation_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversations",
+												":conversation_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "conversation_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"conversation_id\": \"b862fed3-5bad-08eb-2a90-4436a8d92435\",\n  \"participants\": [\n    {\n      \"username\": \"u_@jYI6TH\",\n      \"email\": \"5XbAEYWJ@YseKfHHJSdcHyNtvZstWmE.vzi\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"676ea0af-8575-6de7-3c26-988442677adf\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"host\",\n      \"created_at\": \"1954-08-08T13:02:37.973Z\"\n    },\n    {\n      \"username\": \"v2QMu9\",\n      \"email\": \"ov0hx@wLHMrVLaCJCKygK.kpx\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"9363c06a-6e08-9b0a-c41a-3c3f4779d674\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"1961-06-20T02:53:26.229Z\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"message_id\": \"d045514d-e259-ac8f-f326-3dc4036eef02\",\n      \"sender\": {\n        \"username\": \"IeY\",\n        \"email\": \"mNPv@ikbGByuAPFljcxhLNtRsAikAjytB.vvn\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"b014cdcf-e458-988d-0228-3195bbd51671\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1949-03-12T05:13:58.261Z\"\n      },\n      \"recipient\": {\n        \"username\": \"NJ_WYpms\",\n        \"email\": \"5mN2068sINX@DDmhSeKOrGituhlLbcm.vm\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"694bb2ed-1de2-26de-5d36-ceedc7794b64\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1987-06-07T13:16:52.764Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"2020-06-05T14:29:01.898Z\"\n    },\n    {\n      \"message_id\": \"476781c0-9aba-df01-c9f7-eb347f23f0ee\",\n      \"sender\": {\n        \"username\": \"bQ7G9\",\n        \"email\": \"lsoRz@BST.iemi\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"26393713-659b-c23d-f602-cf6a632e36fe\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1959-03-20T21:12:21.912Z\"\n      },\n      \"recipient\": {\n        \"username\": \"t\",\n        \"email\": \"qb1mV9@jTDayhhQbKfUUYiHToMmTiOGAG.qfdt\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"f2cfdc6f-c4de-aeca-5dd0-7feb7b43e638\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1957-07-11T12:23:28.953Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"1978-05-03T22:46:02.534Z\"\n    }\n  ],\n  \"created_at\": \"1973-10-05T07:56:40.750Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "conversations update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/conversations/:conversation_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversations",
+										":conversation_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "conversation_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this conversation."
+										}
+									]
+								},
+								"description": "API endpoint for managing conversations."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/conversations/:conversation_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversations",
+												":conversation_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "conversation_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"conversation_id\": \"b862fed3-5bad-08eb-2a90-4436a8d92435\",\n  \"participants\": [\n    {\n      \"username\": \"u_@jYI6TH\",\n      \"email\": \"5XbAEYWJ@YseKfHHJSdcHyNtvZstWmE.vzi\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"676ea0af-8575-6de7-3c26-988442677adf\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"host\",\n      \"created_at\": \"1954-08-08T13:02:37.973Z\"\n    },\n    {\n      \"username\": \"v2QMu9\",\n      \"email\": \"ov0hx@wLHMrVLaCJCKygK.kpx\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"9363c06a-6e08-9b0a-c41a-3c3f4779d674\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"1961-06-20T02:53:26.229Z\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"message_id\": \"d045514d-e259-ac8f-f326-3dc4036eef02\",\n      \"sender\": {\n        \"username\": \"IeY\",\n        \"email\": \"mNPv@ikbGByuAPFljcxhLNtRsAikAjytB.vvn\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"b014cdcf-e458-988d-0228-3195bbd51671\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1949-03-12T05:13:58.261Z\"\n      },\n      \"recipient\": {\n        \"username\": \"NJ_WYpms\",\n        \"email\": \"5mN2068sINX@DDmhSeKOrGituhlLbcm.vm\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"694bb2ed-1de2-26de-5d36-ceedc7794b64\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1987-06-07T13:16:52.764Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"2020-06-05T14:29:01.898Z\"\n    },\n    {\n      \"message_id\": \"476781c0-9aba-df01-c9f7-eb347f23f0ee\",\n      \"sender\": {\n        \"username\": \"bQ7G9\",\n        \"email\": \"lsoRz@BST.iemi\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"26393713-659b-c23d-f602-cf6a632e36fe\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1959-03-20T21:12:21.912Z\"\n      },\n      \"recipient\": {\n        \"username\": \"t\",\n        \"email\": \"qb1mV9@jTDayhhQbKfUUYiHToMmTiOGAG.qfdt\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"f2cfdc6f-c4de-aeca-5dd0-7feb7b43e638\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1957-07-11T12:23:28.953Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"1978-05-03T22:46:02.534Z\"\n    }\n  ],\n  \"created_at\": \"1973-10-05T07:56:40.750Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "conversations partial update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/conversations/:conversation_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversations",
+										":conversation_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "conversation_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this conversation."
+										}
+									]
+								},
+								"description": "API endpoint for managing conversations."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/conversations/:conversation_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversations",
+												":conversation_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "conversation_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"conversation_id\": \"b862fed3-5bad-08eb-2a90-4436a8d92435\",\n  \"participants\": [\n    {\n      \"username\": \"u_@jYI6TH\",\n      \"email\": \"5XbAEYWJ@YseKfHHJSdcHyNtvZstWmE.vzi\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"676ea0af-8575-6de7-3c26-988442677adf\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"host\",\n      \"created_at\": \"1954-08-08T13:02:37.973Z\"\n    },\n    {\n      \"username\": \"v2QMu9\",\n      \"email\": \"ov0hx@wLHMrVLaCJCKygK.kpx\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"9363c06a-6e08-9b0a-c41a-3c3f4779d674\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"1961-06-20T02:53:26.229Z\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"message_id\": \"d045514d-e259-ac8f-f326-3dc4036eef02\",\n      \"sender\": {\n        \"username\": \"IeY\",\n        \"email\": \"mNPv@ikbGByuAPFljcxhLNtRsAikAjytB.vvn\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"b014cdcf-e458-988d-0228-3195bbd51671\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1949-03-12T05:13:58.261Z\"\n      },\n      \"recipient\": {\n        \"username\": \"NJ_WYpms\",\n        \"email\": \"5mN2068sINX@DDmhSeKOrGituhlLbcm.vm\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"694bb2ed-1de2-26de-5d36-ceedc7794b64\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1987-06-07T13:16:52.764Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"2020-06-05T14:29:01.898Z\"\n    },\n    {\n      \"message_id\": \"476781c0-9aba-df01-c9f7-eb347f23f0ee\",\n      \"sender\": {\n        \"username\": \"bQ7G9\",\n        \"email\": \"lsoRz@BST.iemi\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"26393713-659b-c23d-f602-cf6a632e36fe\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1959-03-20T21:12:21.912Z\"\n      },\n      \"recipient\": {\n        \"username\": \"t\",\n        \"email\": \"qb1mV9@jTDayhhQbKfUUYiHToMmTiOGAG.qfdt\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"f2cfdc6f-c4de-aeca-5dd0-7feb7b43e638\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1957-07-11T12:23:28.953Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"1978-05-03T22:46:02.534Z\"\n    }\n  ],\n  \"created_at\": \"1973-10-05T07:56:40.750Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "conversations delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversations/:conversation_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversations",
+										":conversation_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "conversation_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this conversation."
+										}
+									]
+								},
+								"description": "API endpoint for managing conversations."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/conversations/:conversation_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversations",
+												":conversation_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "conversation_id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "{conversation_pk}",
+					"item": [
+						{
+							"name": "messages",
+							"item": [
+								{
+									"name": "{message_id}",
+									"item": [
+										{
+											"name": "conversations messages read",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"conversations",
+														":conversation_pk",
+														"messages",
+														":message_id",
+														""
+													],
+													"variable": [
+														{
+															"key": "conversation_pk",
+															"value": "string",
+															"description": "(Required) "
+														},
+														{
+															"key": "message_id",
+															"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+															"description": "(Required) A UUID string identifying this message."
+														}
+													]
+												},
+												"description": "API endpoint for managing messages in conversations."
+											},
+											"response": [
+												{
+													"name": "Untitled Response",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"key": "Authorization",
+																"value": "Basic <credentials>",
+																"description": "Added as a part of security scheme: basic"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"conversations",
+																":conversation_pk",
+																"messages",
+																":message_id",
+																""
+															],
+															"variable": [
+																{
+																	"key": "conversation_pk"
+																},
+																{
+																	"key": "message_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message_id\": \"ca71b97b-a04d-19e0-25dc-1271ef1829b8\",\n  \"sender\": {\n    \"username\": \"QSuP8\",\n    \"email\": \"iXeLCeyV@knpkjsfOTForEiqCIn.fp\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"73825b33-3668-dd6e-ed6f-0e1e44561c5c\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"1953-08-01T16:25:04.100Z\"\n  },\n  \"recipient\": {\n    \"username\": \"YFxCI\",\n    \"email\": \"1zjStvmzvhokDv@voNNjXOpzNkntoiANkpMFmVVcMMy.mym\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"8f8714c7-cf90-e82b-1b36-06ec86b4fdaf\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"2018-05-31T11:33:02.190Z\"\n  },\n  \"message_body\": \"string\",\n  \"sent_at\": \"1995-05-13T19:10:37.851Z\"\n}"
+												}
+											]
+										},
+										{
+											"name": "conversations messages update",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"sender\": {\n    \"username\": \"6@zTjyE18L\",\n    \"email\": \"dORaO5@UCuIX.ss\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  },\n  \"recipient\": {\n    \"username\": \"yr21swdLLy\",\n    \"email\": \"Dj0uzavRp@WMS.lln\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"conversations",
+														":conversation_pk",
+														"messages",
+														":message_id",
+														""
+													],
+													"variable": [
+														{
+															"key": "conversation_pk",
+															"value": "string",
+															"description": "(Required) "
+														},
+														{
+															"key": "message_id",
+															"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+															"description": "(Required) A UUID string identifying this message."
+														}
+													]
+												},
+												"description": "API endpoint for managing messages in conversations."
+											},
+											"response": [
+												{
+													"name": "Untitled Response",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"key": "Authorization",
+																"value": "Basic <credentials>",
+																"description": "Added as a part of security scheme: basic"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"sender\": {\n    \"username\": \"6@zTjyE18L\",\n    \"email\": \"dORaO5@UCuIX.ss\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  },\n  \"recipient\": {\n    \"username\": \"yr21swdLLy\",\n    \"email\": \"Dj0uzavRp@WMS.lln\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  }\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"conversations",
+																":conversation_pk",
+																"messages",
+																":message_id",
+																""
+															],
+															"variable": [
+																{
+																	"key": "conversation_pk"
+																},
+																{
+																	"key": "message_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message_id\": \"ca71b97b-a04d-19e0-25dc-1271ef1829b8\",\n  \"sender\": {\n    \"username\": \"QSuP8\",\n    \"email\": \"iXeLCeyV@knpkjsfOTForEiqCIn.fp\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"73825b33-3668-dd6e-ed6f-0e1e44561c5c\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"1953-08-01T16:25:04.100Z\"\n  },\n  \"recipient\": {\n    \"username\": \"YFxCI\",\n    \"email\": \"1zjStvmzvhokDv@voNNjXOpzNkntoiANkpMFmVVcMMy.mym\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"8f8714c7-cf90-e82b-1b36-06ec86b4fdaf\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"2018-05-31T11:33:02.190Z\"\n  },\n  \"message_body\": \"string\",\n  \"sent_at\": \"1995-05-13T19:10:37.851Z\"\n}"
+												}
+											]
+										},
+										{
+											"name": "conversations messages partial update",
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"sender\": {\n    \"username\": \"6@zTjyE18L\",\n    \"email\": \"dORaO5@UCuIX.ss\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  },\n  \"recipient\": {\n    \"username\": \"yr21swdLLy\",\n    \"email\": \"Dj0uzavRp@WMS.lln\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"conversations",
+														":conversation_pk",
+														"messages",
+														":message_id",
+														""
+													],
+													"variable": [
+														{
+															"key": "conversation_pk",
+															"value": "string",
+															"description": "(Required) "
+														},
+														{
+															"key": "message_id",
+															"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+															"description": "(Required) A UUID string identifying this message."
+														}
+													]
+												},
+												"description": "API endpoint for managing messages in conversations."
+											},
+											"response": [
+												{
+													"name": "Untitled Response",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"key": "Authorization",
+																"value": "Basic <credentials>",
+																"description": "Added as a part of security scheme: basic"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"sender\": {\n    \"username\": \"6@zTjyE18L\",\n    \"email\": \"dORaO5@UCuIX.ss\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  },\n  \"recipient\": {\n    \"username\": \"yr21swdLLy\",\n    \"email\": \"Dj0uzavRp@WMS.lln\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  }\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"conversations",
+																":conversation_pk",
+																"messages",
+																":message_id",
+																""
+															],
+															"variable": [
+																{
+																	"key": "conversation_pk"
+																},
+																{
+																	"key": "message_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message_id\": \"ca71b97b-a04d-19e0-25dc-1271ef1829b8\",\n  \"sender\": {\n    \"username\": \"QSuP8\",\n    \"email\": \"iXeLCeyV@knpkjsfOTForEiqCIn.fp\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"73825b33-3668-dd6e-ed6f-0e1e44561c5c\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"1953-08-01T16:25:04.100Z\"\n  },\n  \"recipient\": {\n    \"username\": \"YFxCI\",\n    \"email\": \"1zjStvmzvhokDv@voNNjXOpzNkntoiANkpMFmVVcMMy.mym\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"8f8714c7-cf90-e82b-1b36-06ec86b4fdaf\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"2018-05-31T11:33:02.190Z\"\n  },\n  \"message_body\": \"string\",\n  \"sent_at\": \"1995-05-13T19:10:37.851Z\"\n}"
+												}
+											]
+										},
+										{
+											"name": "conversations messages delete",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"conversations",
+														":conversation_pk",
+														"messages",
+														":message_id",
+														""
+													],
+													"variable": [
+														{
+															"key": "conversation_pk",
+															"value": "string",
+															"description": "(Required) "
+														},
+														{
+															"key": "message_id",
+															"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+															"description": "(Required) A UUID string identifying this message."
+														}
+													]
+												},
+												"description": "API endpoint for managing messages in conversations."
+											},
+											"response": [
+												{
+													"name": "Untitled Response",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "Basic <credentials>",
+																"description": "Added as a part of security scheme: basic"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/:message_id/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"conversations",
+																":conversation_pk",
+																"messages",
+																":message_id",
+																""
+															],
+															"variable": [
+																{
+																	"key": "conversation_pk"
+																},
+																{
+																	"key": "message_id"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "conversations messages list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODc3ODE3LCJpYXQiOjE3NTg4NzYwMTcsImp0aSI6ImZhNjgyNzM1MDgyZTQwNzJhZDNlNWRlYjJlZGU0MDE3IiwidXNlcl9pZCI6Ijc2MGZlZGIwLWI0OWUtNDRkOC1iNjBmLThkM2U2MzUwMjY2NSJ9.5o5quKILafaR59fQblP75qyTleAfBebgjaZnvzs86Mo",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversations",
+												":conversation_pk",
+												"messages",
+												""
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "string",
+													"description": "A search term.",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "5871",
+													"description": "A page number within the paginated result set.",
+													"disabled": true
+												},
+												{
+													"key": "conversation_id",
+													"value": "string",
+													"description": "ID of the conversation",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "conversation_pk",
+													"value": "string",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Retrieve messages for a specific conversation."
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Basic <credentials>",
+														"description": "Added as a part of security scheme: basic"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/?search=string&page=5871&conversation_id=string",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"conversations",
+														":conversation_pk",
+														"messages",
+														""
+													],
+													"query": [
+														{
+															"key": "search",
+															"value": "string",
+															"description": "A search term."
+														},
+														{
+															"key": "page",
+															"value": "5871",
+															"description": "A page number within the paginated result set."
+														},
+														{
+															"key": "conversation_id",
+															"value": "string",
+															"description": "ID of the conversation"
+														}
+													],
+													"variable": [
+														{
+															"key": "conversation_pk"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"message_id\": \"1a553416-8a72-03f5-f8ff-fea951537ab1\",\n    \"sender\": {\n      \"username\": \"rft3KwhO\",\n      \"email\": \"bLSa86d2zN@Xkb.booc\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"1618dcc4-6224-ba36-31ff-34c628ac3911\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"host\",\n      \"created_at\": \"2006-04-18T03:17:56.470Z\"\n    },\n    \"recipient\": {\n      \"username\": \"Ru\",\n      \"email\": \"prC@XNYixJeX.dkf\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstri\",\n      \"user_id\": \"280e19c7-3694-053e-f0f8-2cb013778f2c\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"2018-12-10T00:39:37.789Z\"\n    },\n    \"message_body\": \"string\",\n    \"sent_at\": \"1974-06-28T05:25:18.551Z\"\n  },\n  {\n    \"message_id\": \"2f7999f7-97a6-d546-91f1-fd6eb20f1bd9\",\n    \"sender\": {\n      \"username\": \"Qip\",\n      \"email\": \"ipzSHqoo7i97Rh@iNKbfvktMXcCrQYqWxyPirWrEUG.dy\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"31a666c9-5849-5f0f-586b-75519f0f198c\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"2013-02-14T17:30:28.230Z\"\n    },\n    \"recipient\": {\n      \"username\": \".BBfcsQro6\",\n      \"email\": \"oUIRg-I4@zAbnlGuaUHPFvPoOqKAtjwnLZzXHH.jn\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"ec4333cb-d792-6c34-8930-9441212bffa5\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"guest\",\n      \"created_at\": \"1950-11-14T12:11:33.446Z\"\n    },\n    \"message_body\": \"string\",\n    \"sent_at\": \"1963-01-24T02:41:33.047Z\"\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "conversations messages create",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"sender\": {\n    \"username\": \"6@zTjyE18L\",\n    \"email\": \"dORaO5@UCuIX.ss\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  },\n  \"recipient\": {\n    \"username\": \"yr21swdLLy\",\n    \"email\": \"Dj0uzavRp@WMS.lln\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversations",
+												":conversation_pk",
+												"messages",
+												""
+											],
+											"variable": [
+												{
+													"key": "conversation_pk",
+													"value": "string",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "API endpoint for managing messages in conversations."
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Basic <credentials>",
+														"description": "Added as a part of security scheme: basic"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"sender\": {\n    \"username\": \"6@zTjyE18L\",\n    \"email\": \"dORaO5@UCuIX.ss\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  },\n  \"recipient\": {\n    \"username\": \"yr21swdLLy\",\n    \"email\": \"Dj0uzavRp@WMS.lln\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"phone_number\": \"string\",\n    \"role\": \"admin\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/conversations/:conversation_pk/messages/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"conversations",
+														":conversation_pk",
+														"messages",
+														""
+													],
+													"variable": [
+														{
+															"key": "conversation_pk"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"message_id\": \"ca71b97b-a04d-19e0-25dc-1271ef1829b8\",\n  \"sender\": {\n    \"username\": \"QSuP8\",\n    \"email\": \"iXeLCeyV@knpkjsfOTForEiqCIn.fp\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"73825b33-3668-dd6e-ed6f-0e1e44561c5c\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"1953-08-01T16:25:04.100Z\"\n  },\n  \"recipient\": {\n    \"username\": \"YFxCI\",\n    \"email\": \"1zjStvmzvhokDv@voNNjXOpzNkntoiANkpMFmVVcMMy.mym\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"password\": \"stringstring\",\n    \"user_id\": \"8f8714c7-cf90-e82b-1b36-06ec86b4fdaf\",\n    \"phone_number\": \"string\",\n    \"full_name\": \"string\",\n    \"role\": \"admin\",\n    \"created_at\": \"2018-05-31T11:33:02.190Z\"\n  },\n  \"message_body\": \"string\",\n  \"sent_at\": \"1995-05-13T19:10:37.851Z\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "conversations list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/conversations/?user_id=760fedb0-b49e-44d8-b60f-8d3e63502665",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"conversations",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "string",
+									"description": "A search term.",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "5871",
+									"description": "A page number within the paginated result set.",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "760fedb0-b49e-44d8-b60f-8d3e63502665",
+									"description": "ID of the user"
+								}
+							]
+						},
+						"description": "Retrieve conversations for a specific user."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic <credentials>",
+										"description": "Added as a part of security scheme: basic"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/conversations/?search=string&page=5871&user_id=string",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversations",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "string",
+											"description": "A search term."
+										},
+										{
+											"key": "page",
+											"value": "5871",
+											"description": "A page number within the paginated result set."
+										},
+										{
+											"key": "user_id",
+											"value": "string",
+											"description": "ID of the user"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"conversation_id\": \"c28ac48d-8b05-6400-37be-f1fa6ba0871f\",\n    \"participants\": [\n      {\n        \"username\": \"vkajIec\",\n        \"email\": \"nc2eu1Yxza@ohLimshBjNaBfiasUkCYHktvqoHmOa.hwyr\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"952899c1-3d73-3a60-259c-af4d4116c9b6\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1959-10-03T07:44:52.901Z\"\n      },\n      {\n        \"username\": \"+ykH6MTnv3\",\n        \"email\": \"FRlB@ajZYAPvFROYKYQIBZemfkTm.jtf\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"b9e7e254-5cda-0d83-1df0-626a22f7516e\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"2016-11-21T09:21:38.851Z\"\n      }\n    ],\n    \"messages\": [\n      {\n        \"message_id\": \"c6ca14ab-b3c4-4387-0167-14752a648d77\",\n        \"sender\": {\n          \"username\": \"-QDFb\",\n          \"email\": \"HuqvvjXPaH0s7Gk@XbvwHzsEwrdtIKbYnaHXiBKLZGNJ.rmx\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstri\",\n          \"user_id\": \"fd742b7c-da1d-9940-949c-7518a8c6a837\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"host\",\n          \"created_at\": \"1971-04-25T22:31:35.655Z\"\n        },\n        \"recipient\": {\n          \"username\": \"Zj9JrXn6nkx\",\n          \"email\": \"UK3K01dcIC@kiqHjYeiLxTtqtrzsrrnQjYG.ofvx\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"f11776f3-99f8-1d8b-69ef-fe8f9ed1d16f\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"admin\",\n          \"created_at\": \"2022-05-24T12:33:58.174Z\"\n        },\n        \"message_body\": \"string\",\n        \"sent_at\": \"1973-02-11T16:36:14.964Z\"\n      },\n      {\n        \"message_id\": \"be68cfb3-79d7-3a84-1bef-c2e931333bc9\",\n        \"sender\": {\n          \"username\": \"3xdt0Qyvnxw\",\n          \"email\": \"LcHBdPg@ppGsWbtVV.jm\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"40c601b8-a464-b466-44a4-24eb8d8d7f09\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"guest\",\n          \"created_at\": \"1991-12-16T13:57:31.697Z\"\n        },\n        \"recipient\": {\n          \"username\": \"-s\",\n          \"email\": \"RPQ@vGMZSsvdjQupnFmz.aeb\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"eff628c5-a0c4-4715-925f-ef850eab68c7\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"guest\",\n          \"created_at\": \"2010-01-28T11:44:07.611Z\"\n        },\n        \"message_body\": \"string\",\n        \"sent_at\": \"1954-12-19T16:26:42.244Z\"\n      }\n    ],\n    \"created_at\": \"2003-05-31T18:59:25.346Z\"\n  },\n  {\n    \"conversation_id\": \"03ad6148-11ca-0623-8467-cf6aaaf039ae\",\n    \"participants\": [\n      {\n        \"username\": \"UxpSOmeSs\",\n        \"email\": \"Mufiory174nJ@UnwWxzdNWOGXZWEhCIGMghdzN.qpu\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"72f9b192-9108-5027-0956-9b531cd7aa86\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"host\",\n        \"created_at\": \"1989-04-05T12:36:04.032Z\"\n      },\n      {\n        \"username\": \"eeEwaIH9vU2\",\n        \"email\": \"pJGoTp@bDlIOjKPPbeqnkzwupHpjHAIkduFK.jq\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"1987707a-3df1-6ee6-9c7e-2e861ea9f99d\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"2005-07-31T22:56:21.457Z\"\n      }\n    ],\n    \"messages\": [\n      {\n        \"message_id\": \"fdc2eb13-68e1-ff67-26e2-44d3440688b5\",\n        \"sender\": {\n          \"username\": \"xsyGSAuOT\",\n          \"email\": \"MAx3owq1@dIXDeQMsRPsHtiIGqrk.kr\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"f8544bbf-2cc2-10ff-e3d1-6754da462e01\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"host\",\n          \"created_at\": \"1968-10-11T12:56:06.386Z\"\n        },\n        \"recipient\": {\n          \"username\": \"+KFm-\",\n          \"email\": \"OkJUkO4yie1kMf@YTpPbtPyDUnluRDER.xjhy\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"8ab07664-2ce0-f9df-45ae-038996762e61\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"admin\",\n          \"created_at\": \"1952-05-24T17:19:18.388Z\"\n        },\n        \"message_body\": \"strin\",\n        \"sent_at\": \"1963-04-08T20:48:46.886Z\"\n      },\n      {\n        \"message_id\": \"ec9eb14a-1a89-35c8-c458-da49e088977a\",\n        \"sender\": {\n          \"username\": \"-6x\",\n          \"email\": \"Wm94ahFNAKwP@DCtUgGTLUhIKfXabJttBZo.gtn\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"e21dd9ca-93c0-06a9-445c-bb3bd205f98c\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"host\",\n          \"created_at\": \"1995-05-12T07:32:10.391Z\"\n        },\n        \"recipient\": {\n          \"username\": \"D8u_T@SF6V\",\n          \"email\": \"XEjYbgbCycYH@ADa.efg\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"password\": \"stringstring\",\n          \"user_id\": \"3bf9bb77-580c-ccb3-65d5-a51a79ad4ace\",\n          \"phone_number\": \"string\",\n          \"full_name\": \"string\",\n          \"role\": \"host\",\n          \"created_at\": \"2024-04-21T16:31:27.779Z\"\n        },\n        \"message_body\": \"string\",\n        \"sent_at\": \"2024-10-11T19:32:36.603Z\"\n      }\n    ],\n    \"created_at\": \"1973-01-04T16:26:33.990Z\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "conversations create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participants_ids\": [\n        \"760fedb0-b49e-44d8-b60f-8d3e63502665\",\n        \"e5bded85-a47e-4464-a090-6ec1ecc592ab\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/conversations/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"conversations",
+								""
+							]
+						},
+						"description": "API endpoint for managing conversations."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic <credentials>",
+										"description": "Added as a part of security scheme: basic"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/conversations/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversations",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"conversation_id\": \"b862fed3-5bad-08eb-2a90-4436a8d92435\",\n  \"participants\": [\n    {\n      \"username\": \"u_@jYI6TH\",\n      \"email\": \"5XbAEYWJ@YseKfHHJSdcHyNtvZstWmE.vzi\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"676ea0af-8575-6de7-3c26-988442677adf\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"host\",\n      \"created_at\": \"1954-08-08T13:02:37.973Z\"\n    },\n    {\n      \"username\": \"v2QMu9\",\n      \"email\": \"ov0hx@wLHMrVLaCJCKygK.kpx\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"9363c06a-6e08-9b0a-c41a-3c3f4779d674\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"1961-06-20T02:53:26.229Z\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"message_id\": \"d045514d-e259-ac8f-f326-3dc4036eef02\",\n      \"sender\": {\n        \"username\": \"IeY\",\n        \"email\": \"mNPv@ikbGByuAPFljcxhLNtRsAikAjytB.vvn\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"b014cdcf-e458-988d-0228-3195bbd51671\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1949-03-12T05:13:58.261Z\"\n      },\n      \"recipient\": {\n        \"username\": \"NJ_WYpms\",\n        \"email\": \"5mN2068sINX@DDmhSeKOrGituhlLbcm.vm\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"694bb2ed-1de2-26de-5d36-ceedc7794b64\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"admin\",\n        \"created_at\": \"1987-06-07T13:16:52.764Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"2020-06-05T14:29:01.898Z\"\n    },\n    {\n      \"message_id\": \"476781c0-9aba-df01-c9f7-eb347f23f0ee\",\n      \"sender\": {\n        \"username\": \"bQ7G9\",\n        \"email\": \"lsoRz@BST.iemi\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"26393713-659b-c23d-f602-cf6a632e36fe\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1959-03-20T21:12:21.912Z\"\n      },\n      \"recipient\": {\n        \"username\": \"t\",\n        \"email\": \"qb1mV9@jTDayhhQbKfUUYiHToMmTiOGAG.qfdt\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"password\": \"stringstring\",\n        \"user_id\": \"f2cfdc6f-c4de-aeca-5dd0-7feb7b43e638\",\n        \"phone_number\": \"string\",\n        \"full_name\": \"string\",\n        \"role\": \"guest\",\n        \"created_at\": \"1957-07-11T12:23:28.953Z\"\n      },\n      \"message_body\": \"string\",\n      \"sent_at\": \"1978-05-03T22:46:02.534Z\"\n    }\n  ],\n  \"created_at\": \"1973-10-05T07:56:40.750Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "refresh",
+					"item": [
+						{
+							"name": "token refresh create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refresh\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/token/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"token",
+										"refresh"
+									]
+								},
+								"description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/token/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"token",
+												"refresh"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"refresh\": \"string\",\n  \"access\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "token create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"fortune24@yopmail.com\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"token"
+							]
+						},
+						"description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic <credentials>",
+										"description": "Added as a part of security scheme: basic"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"string\",\n  \"password\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"token"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"email\": \"string\",\n  \"password\": \"string\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "{user_id}",
+					"item": [
+						{
+							"name": "users read",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/760fedb0-b49e-44d8-b60f-8d3e63502665/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"760fedb0-b49e-44d8-b60f-8d3e63502665",
+										""
+									]
+								},
+								"description": "API endpoint for managing users."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:user_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":user_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "user_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"3f0uF9d\",\n  \"email\": \"NZukQngP8tL@MMPVzWPMKFZZPnAOokVThlmCXh.vm\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"user_id\": \"0a5e42df-2a2f-f2e2-adbc-8b77396337c4\",\n  \"phone_number\": \"string\",\n  \"full_name\": \"string\",\n  \"role\": \"admin\",\n  \"created_at\": \"2024-07-16T22:59:03.975Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "users update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"nTXcgsH\",\n  \"email\": \"ifK7GjN69I@xbJaSseStTcOtrrIHSqSMOCMxxTs.ghfk\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"phone_number\": \"string\",\n  \"role\": \"guest\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:user_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this custom user."
+										}
+									]
+								},
+								"description": "API endpoint for managing users."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"nTXcgsH\",\n  \"email\": \"ifK7GjN69I@xbJaSseStTcOtrrIHSqSMOCMxxTs.ghfk\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"phone_number\": \"string\",\n  \"role\": \"guest\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:user_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":user_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "user_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"3f0uF9d\",\n  \"email\": \"NZukQngP8tL@MMPVzWPMKFZZPnAOokVThlmCXh.vm\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"user_id\": \"0a5e42df-2a2f-f2e2-adbc-8b77396337c4\",\n  \"phone_number\": \"string\",\n  \"full_name\": \"string\",\n  \"role\": \"admin\",\n  \"created_at\": \"2024-07-16T22:59:03.975Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "users partial update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"nTXcgsH\",\n  \"email\": \"ifK7GjN69I@xbJaSseStTcOtrrIHSqSMOCMxxTs.ghfk\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"phone_number\": \"string\",\n  \"role\": \"guest\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:user_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this custom user."
+										}
+									]
+								},
+								"description": "API endpoint for managing users."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"nTXcgsH\",\n  \"email\": \"ifK7GjN69I@xbJaSseStTcOtrrIHSqSMOCMxxTs.ghfk\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"phone_number\": \"string\",\n  \"role\": \"guest\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:user_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":user_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "user_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"3f0uF9d\",\n  \"email\": \"NZukQngP8tL@MMPVzWPMKFZZPnAOokVThlmCXh.vm\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"user_id\": \"0a5e42df-2a2f-f2e2-adbc-8b77396337c4\",\n  \"phone_number\": \"string\",\n  \"full_name\": \"string\",\n  \"role\": \"admin\",\n  \"created_at\": \"2024-07-16T22:59:03.975Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "users delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:user_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "22806cd7-2cd8-0607-dad8-654e3d286828",
+											"description": "(Required) A UUID string identifying this custom user."
+										}
+									]
+								},
+								"description": "API endpoint for managing users."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic <credentials>",
+												"description": "Added as a part of security scheme: basic"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:user_id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":user_id",
+												""
+											],
+											"variable": [
+												{
+													"key": "user_id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "users list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "string",
+									"description": "A search term.",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "5871",
+									"description": "A page number within the paginated result set.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "API endpoint for managing users."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic <credentials>",
+										"description": "Added as a part of security scheme: basic"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/?search=string&page=5871",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "string",
+											"description": "A search term."
+										},
+										{
+											"key": "page",
+											"value": "5871",
+											"description": "A page number within the paginated result set."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"count\": 8486,\n  \"results\": [\n    {\n      \"username\": \"LWSU1\",\n      \"email\": \"klz3EOST5d@LnrwWwuGQPt.mcrg\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"f5f13c30-f2b2-0664-3ef3-94e69d76c74c\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"host\",\n      \"created_at\": \"2024-08-09T23:34:39.125Z\"\n    },\n    {\n      \"username\": \"_EYS417\",\n      \"email\": \"RB6yRSBQFuY@EDsUdhoUevbTqerPQSCfkXVW.bszv\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"password\": \"stringstring\",\n      \"user_id\": \"38ec562a-08a2-2290-c0d1-ac8aa338eaff\",\n      \"phone_number\": \"string\",\n      \"full_name\": \"string\",\n      \"role\": \"admin\",\n      \"created_at\": \"1961-01-04T01:22:47.890Z\"\n    }\n  ],\n  \"next\": \"https://EKebtGdloAPkMhpFwjoSR.dmcLF+TeLMvDCybYKv9Rik-Xu,BbNlhYB07G,Ld4GAKxUV8tDbIN2O8fU5nug\",\n  \"previous\": \"https://XKvWxpeuXAXXNaSelbF.dwcrecAc3NhpTEkJSLQOEo61XTyzkSUGSq1JGfAAFY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"fortune24\",\n  \"email\": \"fortune24@yopmail.com\",\n  \"first_name\": \"michael\",\n  \"last_name\": \"jackson\",\n  \"password\": \"password\",\n  \"phone_number\": \"09032657788\",\n  \"role\": \"guest\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "API endpoint for managing users."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic <credentials>",
+										"description": "Added as a part of security scheme: basic"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"nTXcgsH\",\n  \"email\": \"ifK7GjN69I@xbJaSseStTcOtrrIHSqSMOCMxxTs.ghfk\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"phone_number\": \"string\",\n  \"role\": \"guest\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"username\": \"3f0uF9d\",\n  \"email\": \"NZukQngP8tL@MMPVzWPMKFZZPnAOokVThlmCXh.vm\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"password\": \"stringstring\",\n  \"user_id\": \"0a5e42df-2a2f-f2e2-adbc-8b77396337c4\",\n  \"phone_number\": \"string\",\n  \"full_name\": \"string\",\n  \"role\": \"admin\",\n  \"created_at\": \"2024-07-16T22:59:03.975Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "create conversation message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-CSRFTOKEN",
+						"value": "rj8QbrYKb0UKp2ngn91EinT0oY3cpDjhEtea03My49IrBUtJ37wW8TQEQV2g3sXv",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"conversation_id\": \"fe424548-d712-4149-8d6a-c407283afb1c\",\n  \"sender_id\": \"760fedb0-b49e-44d8-b60f-8d3e63502665\",\n  \"recipient_id\": \"e5bded85-a47e-4464-a090-6ec1ecc592ab\",\n  \"message_body\": \"This is a test chat message\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/conversations/fe424548-d712-4149-8d6a-c407283afb1c/messages/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"conversations",
+						"fe424548-d712-4149-8d6a-c407283afb1c",
+						"messages",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://127.0.0.1:8000/api/conversations/fe424548-d712-4149-8d6a-c407283afb1c/messages/' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -H 'X-CSRFTOKEN: rj8QbrYKb0UKp2ngn91EinT0oY3cpDjhEtea03My49IrBUtJ37wW8TQEQV2g3sXv' \\\n  -d '{\n  \"sender\": {\n    \"username\": \"00VQ6hyTo\",\n    \"email\": \"user@example.com\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"password\": \"stringst\",\n    \"role\": \"guest\"\n  },\n  \"recipient\": {\n    \"username\": \"UmDGI\",\n    \"email\": \"user@example.com\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"password\": \"stringst\",\n    \"role\": \"guest\"\n  }\n}'"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{basicAuthUsername}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{basicAuthPassword}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api"
+		}
+	]
+}
