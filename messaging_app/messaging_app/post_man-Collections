@@ -1020,7 +1020,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODc3ODE3LCJpYXQiOjE3NTg4NzYwMTcsImp0aSI6ImZhNjgyNzM1MDgyZTQwNzJhZDNlNWRlYjJlZGU0MDE3IiwidXNlcl9pZCI6Ijc2MGZlZGIwLWI0OWUtNDRkOC1iNjBmLThkM2U2MzUwMjY2NSJ9.5o5quKILafaR59fQblP75qyTleAfBebgjaZnvzs86Mo",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1129,7 +1129,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODc2NjEzLCJpYXQiOjE3NTg4NzQ4MTMsImp0aSI6IjkwMTI5NTIwMDEwMzQ1YzY5M2FjYjMwY2Q2ZjQ4MDAxIiwidXNlcl9pZCI6Ijc2MGZlZGIwLWI0OWUtNDRkOC1iNjBmLThkM2U2MzUwMjY2NSJ9.cXu0m8ghf0SBRByW7zTjfQUOw6JZk5QqZkQXxGA6_Us",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1428,7 +1428,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODc3ODE3LCJpYXQiOjE3NTg4NzYwMTcsImp0aSI6ImZhNjgyNzM1MDgyZTQwNzJhZDNlNWRlYjJlZGU0MDE3IiwidXNlcl9pZCI6Ijc2MGZlZGIwLWI0OWUtNDRkOC1iNjBmLThkM2U2MzUwMjY2NSJ9.5o5quKILafaR59fQblP75qyTleAfBebgjaZnvzs86Mo",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -1783,7 +1783,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODc0NjI0LCJpYXQiOjE3NTg4NzI4MjQsImp0aSI6ImQ0YmNlM2IzYWIzYzQ4YWY4MDIyYzcyMjc4MTdjMTJiIiwidXNlcl9pZCI6Ijc2MGZlZGIwLWI0OWUtNDRkOC1iNjBmLThkM2U2MzUwMjY2NSJ9.rdHWehevMSRoVz5Z9RplRyG066bKCbGfW62TprRiL5w",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1978,7 +1978,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODc3ODE3LCJpYXQiOjE3NTg4NzYwMTcsImp0aSI6ImZhNjgyNzM1MDgyZTQwNzJhZDNlNWRlYjJlZGU0MDE3IiwidXNlcl9pZCI6Ijc2MGZlZGIwLWI0OWUtNDRkOC1iNjBmLThkM2U2MzUwMjY2NSJ9.5o5quKILafaR59fQblP75qyTleAfBebgjaZnvzs86Mo",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
