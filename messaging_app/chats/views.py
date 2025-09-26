@@ -10,6 +10,7 @@ from drf_yasg import openapi
 from .models import CustomUser, Conversation, Message
 from .serializers import UserSerializer, MessageSerializer, ConversationSerializer
 from .permissions import IsOwner, IsParticipantOfConversation
+from .pagination import MessagePagination
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -82,6 +83,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ["conversation__conversation_id"]
     permission_classes = [IsAuthenticated, IsParticipantOfConversation]
+    pagination_class = MessagePagination
 
     def get_queryset(self):
         conversation_id = self.request.query_params.get("conversation_id")
