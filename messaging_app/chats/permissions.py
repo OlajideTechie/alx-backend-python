@@ -1,4 +1,5 @@
 from rest_framework.permissions import BasePermission
+from rest_framework import permissions
 
 """Custom permission to only allow owners of an object to edit it."""
 class IsOwner(BasePermission):
