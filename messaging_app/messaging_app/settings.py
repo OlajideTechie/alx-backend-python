@@ -69,11 +69,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'chats.auth.CustomAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    
 }
+
+
 
 ROOT_URLCONF = 'messaging_app.urls'
 
@@ -153,3 +158,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'chats.CustomUser'
+
+
+""" # JWT Settings
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
+"""
+
+SIMPLE_JWT = {
+    "USER_ID_FIELD": "user_id",   
+    "USER_ID_CLAIM": "user_id", 
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(minutes=60),
+}

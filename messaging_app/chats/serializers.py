@@ -2,6 +2,32 @@ from rest_framework import serializers
 from .models import CustomUser, Conversation, Message
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError as DjangoValidationError
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """
+    Custom JWT serializer that explicitly uses 'email' as the login field.
+    """
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add extra claims if needed
+        token['email'] = user.email
+        token['username'] = user.username
+        return token
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    """
+    Custom JWT view that uses the CustomTokenObtainPairSerializer.
+    """
+    serializer_class = CustomTokenObtainPairSerializer
+    
 
 
 # ------------------------
@@ -47,6 +73,23 @@ class UserSerializer(serializers.ModelSerializer):
         if CustomUser.objects.filter(email=value).exists():
             raise serializers.ValidationError("A user with this email already exists.")
         return value
+
+    def create(self, validated_data):
+        password = validated_data.pop("password", None)
+        user = CustomUser(**validated_data)
+        if password:
+            user.set_password(password)
+        user.save()
+        return user
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop("password", None)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        if password:
+            instance.set_password(password)
+        instance.save()
+        return instance
 
 
 # ------------------------

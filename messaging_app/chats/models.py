@@ -14,7 +14,6 @@ class CustomUser(AbstractUser):
     )
     email = models.EmailField(unique=True, null=False)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    password =  models.CharField(max_length=128, null=False)
     first_name = models.CharField(max_length=30, blank=True,  null=False)
     last_name = models.CharField(max_length=30, blank=True, null=False)
 
@@ -37,6 +36,9 @@ class CustomUser(AbstractUser):
         indexes = [
             models.Index(fields=["email"]),
         ]
+        
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"] # username is required by AbstractUser
 
 
 # ------------------------
