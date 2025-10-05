@@ -1,10 +1,10 @@
 from django.db import models
 
 class UnreadMessagesManager(models.Manager):
-    def for_user(self, user):
+    def unread_for_user(self, user):
         """
         Returns unread messages for the given user.
-        Uses .only() to fetch only needed fields.
+        Optimized with .only() to fetch only the necessary fields.
         """
         return (
             self.filter(receiver=user, read=False)

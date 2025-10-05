@@ -27,6 +27,10 @@ class Message(models.Model):
         blank=True,
         related_name="replies"
     )
+    
+        # Managers
+    objects = models.Manager()  
+    unread = UnreadMessagesManager() 
 
     # Edit tracking
     edited_at = models.DateTimeField(null=True, blank=True)
