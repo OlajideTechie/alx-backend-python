@@ -2,11 +2,12 @@ from rest_framework import viewsets, filters, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-
+from django.views.decorators.cache import cache_page
 from .models import CustomUser, Conversation, Message
 from .serializers import UserSerializer, MessageSerializer, ConversationSerializer
 from .permissions import IsOwner, IsParticipantOfConversation
@@ -28,7 +29,8 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             return [AllowAny()]
         return [IsAuthenticated()]
 
-
+@login_required
+@cache_page(60) # Cache for 60 seconds
 class ConversationViewSet(viewsets.ModelViewSet):
     """
     API endpoint for managing conversations.
