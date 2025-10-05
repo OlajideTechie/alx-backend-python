@@ -1,5 +1,4 @@
 # ---- General ----
-*.log
 *.pyc
 *.DS_Store
 __pycache__/
@@ -24,7 +23,6 @@ build/
 *.pot
 
 # Django specific
-*.log
 local_settings.py
 media/
 staticfiles/
