@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from .models import Message
 from django.shortcuts import render
+from django.views.decorators.cache import cache_page
 
 
 """ View to delete a user and cascade delete related messages and notifications."""
@@ -72,3 +73,38 @@ def unread_messages_view(request):
     return render(request, "messaging/unread_messages.html", {
         "unread_messages": unread_messages
     })
+    
+    
+    
+    
+@login_required
+@cache_page(60) # Cache for 60 seconds
+class ConversationViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for managing conversations.
+    Only authenticated users who are participants can access.
+    """
+    queryset = Conversation.objects.all()
+    serializer_class = ConversationSerializer
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["participants_id__user_id"]
+
+    def get_queryset(self):
+        user_id = self.request.query_params.get("user_id")
+        if user_id:
+            return self.queryset.filter(participants_id__user_id=user_id).distinct()
+        return self.queryset
+
+    def perform_create(self, serializer):
+        participants_ids = self.request.data.get("participants_ids", [])
+        if not participants_ids or len(participants_ids) < 2:
+            raise ValidationError("At least two participants are required.")
+
+        participants_qs = CustomUser.objects.filter(user_id__in=participants_ids)
+        if participants_qs.count() != len(participants_ids):
+            raise ValidationError("One or more participant IDs are invalid.")
+
+        conversation = serializer.save()
+        conversation.participants_id.set(participants_qs)
+        conversation.save()
