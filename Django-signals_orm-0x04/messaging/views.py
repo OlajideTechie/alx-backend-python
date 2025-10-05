@@ -1,5 +1,7 @@
 # views.py
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -18,13 +20,40 @@ def delete_user(request):
 
 
 """ View to display a conversation between two users with message threading."""
+@login_required
 def conversation_view(request, user_id):
-    # Get top-level messages (not replies) for a conversation
-    messages = (
-        Message.objects
-        .filter(receiver_id=user_id, parent_message__isnull=True)
-        .select_related("sender", "receiver")   # avoid extra queries
-        .prefetch_related("replies__sender")    # prefetch replies + their senders
-    )
+    """
+    Retrieve conversation between logged-in user and another user.
+    """
+    other_user = get_object_or_404(User, id=user_id)
 
-    return render(request, "messaging/conversation.html", {"messages": messages})
+    # Filter messages between the two users
+    messages = Message.objects.filter(
+        (models.Q(sender=request.user, receiver=other_user) |
+         models.Q(sender=other_user, receiver=request.user))
+    ).select_related("sender", "receiver").order_by("timestamp")
+
+    return render(request, "messaging/conversation.html", {
+        "messages": messages,
+        "other_user": other_user
+    })
+    
+    
+@login_required
+def send_message(request, receiver_id):
+    """
+    Send a message from the logged-in user to another user.
+    """
+    if request.method == "POST":
+        content = request.POST.get("content")
+        receiver = get_object_or_404(User, id=receiver_id)
+
+        # Create message with sender=request.user
+        Message.objects.create(
+            sender=request.user,
+            receiver=receiver,
+            content=content
+        )
+        return JsonResponse({"status": "success", "message": "Message sent!"})
+
+    return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
