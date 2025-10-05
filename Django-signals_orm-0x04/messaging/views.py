@@ -61,13 +61,7 @@ def send_message(request, receiver_id):
 
 @login_required
 def unread_messages_view(request):
-    """
-    Show unread messages for the logged-in user.
-    """
     unread_messages = Message.unread.for_user(request.user)
-
     return render(request, "messaging/unread_messages.html", {
         "unread_messages": unread_messages
     })
-    
-    
