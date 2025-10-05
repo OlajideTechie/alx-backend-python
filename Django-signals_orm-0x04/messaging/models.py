@@ -9,7 +9,7 @@ class Message(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     edited_at =  models.DateTimeField(auto_now=True)
     edited_by =  models.TextField()
-    messageHistory = models.TextField()
+    MessageHistory = models.TextField()
 
     def __str__(self):
         return f"{self.user.username}: {self.content[:30]}"
