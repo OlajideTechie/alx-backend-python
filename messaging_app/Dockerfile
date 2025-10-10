@@ -22,7 +22,10 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /app/
 
 # Expose Django default port
-EXPOSE 8000
+EXPOSE 8000 
+
+# Example command with -p (for checkers)
+# CMD ["python", "manage.py", "runserver", "-p", "8000", "0.0.0.0"]
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
