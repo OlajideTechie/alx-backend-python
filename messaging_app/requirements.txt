@@ -1,0 +1,30 @@
+# --- Core Django setup ---
+Django==4.2.23
+gunicorn==23.0.0
+whitenoise==6.9.0
+dj-database-url==3.0.1
+python-decouple==3.8
+python-dotenv==1.0.1
+asgiref==3.9.1
+pytz==2025.2
+sqlparse==0.5.3
+tzdata==2025.2
+
+# --- Database drivers ---
+# psycopg2-binary==2.9.10   # PostgreSQL
+mysqlclient==2.2.5       # MYSQL 
+
+# --- Django REST Framework ---
+djangorestframework==3.15.1
+django-cors-headers==4.7.0
+djangorestframework_simplejwt==5.5.1
+drf-spectacular==0.28.0
+drf-yasg==1.21.10
+django-filter==24.3
+drf-nested-routers
+
+# --- Utilities ---
+requests==2.32.4
+PyJWT==2.10.1
+python-dateutil==2.9.0.post0
+PyYAML==6.0.2

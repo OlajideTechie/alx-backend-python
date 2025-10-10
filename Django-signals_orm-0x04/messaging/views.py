@@ -75,8 +75,6 @@ def unread_messages_view(request):
     })
     
     
-    
-    
 @login_required
 @cache_page(60) # Cache for 60 seconds
 class ConversationViewSet(viewsets.ModelViewSet):

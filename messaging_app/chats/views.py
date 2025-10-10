@@ -8,6 +8,7 @@ from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import CustomUser, Conversation, Message
 from .serializers import UserSerializer, MessageSerializer, ConversationSerializer
 from .permissions import IsOwner, IsParticipantOfConversation
@@ -29,8 +30,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             return [AllowAny()]
         return [IsAuthenticated()]
 
-@login_required
-@cache_page(60) # Cache for 60 seconds
+@method_decorator(cache_page(60), name='list')
 class ConversationViewSet(viewsets.ModelViewSet):
     """
     API endpoint for managing conversations.
