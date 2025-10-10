@@ -1,8 +1,15 @@
+version: '3.9'
+
 services:
   db:
     image: mysql:8.0
     container_name: messaging_db
     restart: always
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     env_file:
       - .env
     ports:
@@ -13,7 +20,7 @@ services:
   web:
     build: .
     container_name: messaging_app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -21,8 +28,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env  # Ensure environment variables are loaded
-    restart: always
+      - .env
 
 volumes:
-  mysql_data:  # Persist MySQL data
+  mysql_data:
