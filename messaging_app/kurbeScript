@@ -1,0 +1,33 @@
+#!/bin/bash
+# kurbeScript - Automate basic Kubernetes cluster setup and verification
+
+echo "🚀 Starting Minikube Kubernetes cluster..."
+
+# Start the Minikube cluster
+minikube start --driver=docker
+
+# Check if Minikube started successfully
+if [ $? -ne 0 ]; then
+    echo "Failed to start Minikube. Please check Docker and try again."
+    exit 1
+fi
+
+echo "✅ Minikube started successfully."
+
+# Verify that the cluster is running
+echo "Checking Kubernetes cluster status..."
+kubectl cluster-info
+
+# Check if cluster-info returned successfully
+if [ $? -ne 0 ]; then
+    echo "Unable to connect to Kubernetes cluster. Something might be wrong."
+    exit 1
+fi
+
+echo "✅ Kubernetes cluster is up and running."
+
+# Retrieve and display pods
+echo "📦 Retrieving pods..."
+kubectl get pods --all-namespaces
+
+echo "🎉 All done! Kubernetes cluster is active and pods (if any) are listed."
