@@ -1,22 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: messaging-app-deployment
+  name: messaging-app-green
   labels:
     app: messaging-app
+    version: green
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: messaging-app
+      version: green
   template:
     metadata:
       labels:
         app: messaging-app
+        version: green
     spec:
       containers:
         - name: messaging-app
-          image: messaging_app:latest
+          image: messaging_app:latest  # replace with new version tag if needed
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
@@ -47,18 +50,3 @@ spec:
             limits:
               cpu: "300m"
               memory: "512Mi"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: messaging-app-service
-spec:
-  selector:
-    app: messaging-app
-  ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
-      nodePort: 30080  # allows access on localhost:30080
-  type: NodePort
