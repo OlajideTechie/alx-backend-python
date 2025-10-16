@@ -1,0 +1,242 @@
+docker terminal comands
+Build an image: docker build -t app-image .
+Run a container: docker run -d app-image
+
+Start services: docker-compose up
+
+docker compose up --build 
+Stop services: docker-compose down
+
+
+
+Kubernetes, Docker, and Django App Deployment Summary
+
+⸻
+
+1. Dockerizing Django App
+	•	Build a Docker image for the Django app.
+
+docker build -t messaging_app:latest .
+
+
+	•	Run locally to test before pushing to Kubernetes.
+
+docker run -p 8000:8000 messaging_app:latest
+
+
+	•	(Optional) Tag and push to Docker Hub if needed for Kubernetes cluster.
+
+docker tag messaging_app:latest your_dockerhub_user/messaging_app:latest
+docker push your_dockerhub_user/messaging_app:latest
+
+
+
+2. Kubernetes Deployment
+	•	Deployment YAML (blue_deployment.yaml or green_deployment.yaml):
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: messaging-app-deployment
+  labels:
+    app: messaging-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: messaging-app
+  template:
+    metadata:
+      labels:
+        app: messaging-app
+    spec:
+      containers:
+        - name: messaging-app
+          image: messaging_app:2.0  # Update version for rolling update
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DJANGO_ALLOWED_HOSTS
+              value: "*,localhost,127.0.0.1,messaging-app-service"
+          envFrom:
+            - configMapRef:
+                name: messaging-config
+            - secretRef:
+                name: messaging-secrets
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "300m"
+              memory: "512Mi"
+
+
+	•	Apply deployment:
+
+kubectl apply -f blue_deployment.yaml
+kubectl apply -f green_deployment.yaml  # for blue-green deployment
+
+
+	•	Check pods:
+
+kubectl get pods
+
+
+
+3. Kubernetes Service
+	•	Service YAML (kubeservice.yaml):
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: messaging-app-service
+spec:
+  selector:
+    app: messaging-app  # switch to green for traffic shift
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30080
+  type: NodePort
+
+
+	•	Apply service:
+
+kubectl apply -f kubeservice.yaml
+
+
+
+4. Ingress Controller & Resource
+	•	Enable Nginx Ingress addon in Minikube:
+
+minikube addons enable ingress
+
+
+	•	Create Ingress resource (ingress.yaml) to route traffic:
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: messaging-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: messaging.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: messaging-app-service
+            port:
+              number: 8000
+
+
+	•	Apply Ingress:
+
+kubectl apply -f ingress.yaml
+
+
+	•	Update /etc/hosts to access via domain:
+
+
+
+
+
+sudo edit /etc/hosts
+
+127.0.0.1 messaging.local
+
+- Run Minikube tunnel to expose ingress:
+```bash
+minikube tunnel
+
+5. Blue-Green Deployment Strategy
+	•	Maintain two versions (blue and green) of the deployment.
+	•	Initially, traffic goes to blue version. Switch selector in service to green when ready.
+	•	Commands:
+
+kubectl apply -f blue_deployment.yaml
+kubectl apply -f green_deployment.yaml
+kubectl get pods
+
+
+
+6. Rolling Update
+	•	Update image version in deployment YAML.
+	•	Apply deployment to trigger rolling update:
+
+kubectl apply -f blue_deployment.yaml  # updated version
+kubectl rollout status deployment/messaging-app-deployment
+
+
+	•	Test for downtime:
+
+while true; do curl -s http://localhost:30080/; sleep 1; done
+
+
+
+7. Monitoring and Scaling
+	•	Scale deployment:
+
+kubectl scale deployment messaging-app-deployment --replicas=3
+kubectl get pods
+
+
+	•	Check resource usage (requires metrics-server):
+
+kubectl top pods
+kubectl top nodes
+
+
+
+8. Database Deployment (MySQL)
+	•	MySQL deployment YAML (mysql-service.yaml) uses secrets for credentials.
+	•	Service name db is used as MYSQL_HOST in Django.
+	•	Apply MySQL deployment and service:
+
+kubectl apply -f mysql-service.yaml
+
+
+
+9. Debugging Tips
+	•	Check logs:
+
+kubectl logs <pod-name>
+
+
+	•	Describe pod for events:
+
+kubectl describe pod <pod-name>
+
+
+	•	Common issues:
+	•	ErrImageNeverPull: image not found locally or in registry.
+	•	DisallowedHost: update DJANGO_ALLOWED_HOSTS.
+	•	Unknown server host 'db': check MySQL service name and network.
+
+10. Additional Commands
+
+# Check all resources
+kubectl get all
+
+# Delete resources
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
+kubectl delete -f ingress.yaml
