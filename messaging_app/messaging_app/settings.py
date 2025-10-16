@@ -33,13 +33,14 @@ SECRET_KEY = 'os.getenv("SECRET_KEY")'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'messaging-app-service',
-    '10.244.0.10',
-    "10.244.0.14"
-]
+# ALLOWED_HOSTS = os.getenv['localhost', '127.0.0.1','messaging-app-service','10.244.0.10',"10.244.0.14"]
+
+# Allow all hosts (safest for local testing in Kubernetes / Minikube)
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
+
+# Allow Kubernetes internal IPs and NodePort access
+if "*" not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS += ["127.0.0.1", "localhost", "0.0.0.0", "messaging-app-service"]
 
 
 # Application definition

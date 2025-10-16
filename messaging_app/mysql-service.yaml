@@ -45,13 +45,13 @@ spec:
               mountPath: /var/lib/mysql
       volumes:
         - name: mysql-storage
-          emptyDir: {}  # ✅ Ephemeral storage — use PersistentVolume for production
+          emptyDir: {}  # Ephemeral storage — use PersistentVolume for production
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: db   # ✅ Django will use this as MYSQL_HOST=db
+  name: db   #  Django will use this as MYSQL_HOST=db
 spec:
   selector:
     app: mysql

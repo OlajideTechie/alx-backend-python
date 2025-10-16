@@ -5,7 +5,7 @@ metadata:
   labels:
     app: messaging-app
 spec:
-  replicas: 2  # Runs 2 instances for load balancing and fault tolerance
+  replicas: 2
   selector:
     matchLabels:
       app: messaging-app
@@ -16,32 +16,39 @@ spec:
     spec:
       containers:
         - name: messaging-app
-          image: messaging_app:latest 
+          image: messaging_app:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
+          env:
+            - name: DJANGO_ALLOWED_HOSTS
+              value: "*,localhost,127.0.0.1,messaging-app-service"
           envFrom:
             - configMapRef:
                 name: messaging-config
             - secretRef:
                 name: messaging-secrets
-
-          # Readiness & liveness probes to check health
           readinessProbe:
             httpGet:
               path: /
               port: 8000
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 20
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /
               port: 8000
-            initialDelaySeconds: 15
-            periodSeconds: 10
+            initialDelaySeconds: 20
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "300m"
+              memory: "512Mi"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -53,4 +60,5 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: 8000
-  type: ClusterIP  # internal-only access
+      nodePort: 30080  # allows access on localhost:30080
+  type: NodePort
