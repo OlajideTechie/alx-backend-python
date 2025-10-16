@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Script: kubctl-0x03
+# Purpose: Apply blue deployment update, monitor rolling update, and test app availability
+
+DEPLOYMENT_FILE="blue_deployment.yaml"
+SERVICE_NAME="messaging-app-service"
+NAMESPACE="default"
+APP_URL="http://localhost:30080"
+
+echo "🔹 Applying updated deployment..."
+kubectl apply -f $DEPLOYMENT_FILE
+
+echo "🔹 Triggering rolling update..."
+kubectl rollout status deployment/messaging-app-deployment -n $NAMESPACE
+
+echo "🔹 Monitoring app availability using curl..."
+echo "Press Ctrl+C to stop monitoring"
+
+while true; do
+    STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" $APP_URL)
+    if [ "$STATUS_CODE" -eq 200 ]; then
+        echo "$(date '+%H:%M:%S') ✅ App is UP (HTTP $STATUS_CODE)"
+    else
+        echo "$(date '+%H:%M:%S') ⚠️ App returned HTTP $STATUS_CODE"
+    fi
+    sleep 2
+done
