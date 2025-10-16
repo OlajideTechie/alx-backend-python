@@ -1,0 +1,8 @@
+# Apply the Ingress configuration for the Django app
+kubectl apply -f ingress.yaml
+
+# (Optional) Verify that the Ingress resource was created successfully
+kubectl get ingress
+
+# (Optional) Check the Ingress controller status
+kubectl get pods -n ingress-nginx
