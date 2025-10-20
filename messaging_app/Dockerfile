@@ -15,18 +15,17 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements.txt and install dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY messaging_app/requirements.txt .
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application code
-COPY . /app/
+# 
+COPY messaging_app/ . 
 
 # Expose Django default port
 EXPOSE 8000 
 
-# Example command with -p (for checkers)
-# CMD ["python", "manage.py", "runserver", "-p", "8000", "0.0.0.0"]
 
+#Copy entrypoint script and give execution permissions
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
