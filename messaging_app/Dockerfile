@@ -11,7 +11,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 # Install system dependencies (MySQL client, build tools)
-RUN apt-get update --fix-missing && \
+RUN sed -i 's|http://deb.debian.org/debian|http://ftp.debian.org/debian|g' /etc/apt/sources.list && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         gcc \
         pkg-config \
