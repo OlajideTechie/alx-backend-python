@@ -46,8 +46,8 @@ fi
 #!/bin/bash -e
 ${PYTHON_PATH} -m venv ${VENV_DIR}
 source ${VENV_DIR}/bin/activate
-${VENV_DIR}/pip install --upgrade pip
-${VENV_DIR}/pip install -r messaging_app/requirements.txt
+${VENV_DIR}/pip3 install --upgrade pip
+${VENV_DIR}/pip3 install -r messaging_app/requirements.txt
                 '''
             }
         }
