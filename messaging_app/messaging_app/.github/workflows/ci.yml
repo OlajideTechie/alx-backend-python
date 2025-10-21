@@ -61,8 +61,13 @@ jobs:
           source venv/bin/activate
           pip install --upgrade pip
           pip install -r messaging_app/requirements.txt
-          pip install pytest pytest-django pytest-html
+          pip install pytest pytest-django pytest-html pytest-cov flake8
 
+      - name: Run flake8 linting
+        run: |
+          source venv/bin/activate
+          flake8 messaging_app
+          
       - name: Wait for MySQL
         run: |
           for i in {1..30}; do
@@ -76,11 +81,12 @@ jobs:
           source venv/bin/activate
           python manage.py migrate --noinput
 
-      - name: Run tests with pytest and generate HTML report
+      - name: Run tests with pytest, coverage, and HTML report
         run: |
           source venv/bin/activate
           pytest messaging_app/messaging_app/tests \
             --junitxml=reports/test-results.xml \
+            --cov=messaging_app --cov-report=xml:reports/coverage.xml \
             --html=reports/report.html --self-contained-html
 
       - name: Upload test artifacts
