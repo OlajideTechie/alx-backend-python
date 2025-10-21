@@ -77,4 +77,6 @@ Thumbs.db
 *.class
 .idea/
 .qodo/
+pytest_cache/*
+htmlcov/
 
