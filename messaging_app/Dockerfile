@@ -25,10 +25,15 @@ RUN python -m venv /app/venv
 # Copy only requirements first (for better caching)
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
-
+# Install system dependencies (MySQL client, build tools)
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get update --fix-missing && \
+    apt-get install -y --no-install-recommends \
+        gcc \
+        pkg-config \
+        libmariadb-dev && \
+    rm -rf /var/lib/apt/lists/*
 # Copy project files into the image
 COPY . .
 

@@ -60,7 +60,7 @@ pipeline {
             steps {
                 echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
                 sh '''
-                    docker build -t oolajide91/messaging_app:latest -f messaging_app/Dockerfile messaging_app
+                    docker build --no-cache -t oolajide91/messaging_app:latest -f messaging_app/Dockerfile messaging_app
                 '''
             }
         }
