@@ -7,17 +7,35 @@ pipeline {
         VENV_DIR = 'venv'
         IMAGE_NAME = 'oolajide91/messaging_app'
         IMAGE_TAG = 'latest'
-        PYTHON_PATH = '/usr/bin/python3'  // macOS Python path
-        DOCKER_PATH = '/usr/local/bin/docker' // Docker path on Mac
+        PYTHON_PATH = '/Users/olajideojo/Desktop/alx-backend-python/venv/bin/python3'
+        DOCKER_PATH = '/usr/local/bin/docker'
+        KEEP_IMAGES = 3
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                echo 'Cleaning up previous workspace...'
+                sh '''
+#!/bin/bash -e
+rm -rf ${VENV_DIR}
+rm -rf reports
+# Keep last ${KEEP_IMAGES} Docker images, delete older ones
+IMAGE_IDS=$(${DOCKER_PATH} images --format '{{.Repository}} {{.Tag}} {{.ID}}' | grep ${IMAGE_NAME} | sort -r | awk 'NR>${KEEP_IMAGES} {print $3}')
+if [ ! -z "$IMAGE_IDS" ]; then
+    echo "Removing old Docker images..."
+    ${DOCKER_PATH} rmi -f $IMAGE_IDS || true
+fi
+                '''
+            }
+        }
+
         stage('Checkout Code') {
             steps {
                 echo 'Cloning repository from GitHub...'
                 git branch: 'main',
                     url: 'https://github.com/OlajideTechie/alx-backend-python.git',
-                    credentialsId: 'github-credentials-id'
+                    credentialsId: "github-credentials-id"
             }
         }
 
@@ -28,9 +46,9 @@ pipeline {
 #!/bin/bash -e
 ${PYTHON_PATH} -m venv ${VENV_DIR}
 source ${VENV_DIR}/bin/activate
-${VENV_DIR}/bin/pip install --upgrade pip
-${VENV_DIR}/bin/pip install -r messaging_app/requirements.txt
-'''
+${VENV_DIR}/pip install --upgrade pip
+${VENV_DIR}/pip install -r messaging_app/requirements.txt
+                '''
             }
         }
 
@@ -40,8 +58,8 @@ ${VENV_DIR}/bin/pip install -r messaging_app/requirements.txt
                 sh '''
 #!/bin/bash -e
 source ${VENV_DIR}/bin/activate
-${VENV_DIR}/bin/pytest messaging_app/messaging_app/tests --junitxml=reports/test-results.xml
-'''
+${VENV_DIR}/pytest messaging_app/messaging_app/tests --junitxml=reports/test-results.xml
+                '''
             }
             post {
                 always {
@@ -56,8 +74,8 @@ ${VENV_DIR}/bin/pytest messaging_app/messaging_app/tests --junitxml=reports/test
                 sh '''
 #!/bin/bash -e
 source ${VENV_DIR}/bin/activate
-${VENV_DIR}/bin/pytest messaging_app/messaging_app/tests --html=reports/report.html --self-contained-html
-'''
+${VENV_DIR}/pytest messaging_app/messaging_app/tests --html=reports/report.html --self-contained-html
+                '''
             }
         }
 
@@ -67,7 +85,7 @@ ${VENV_DIR}/bin/pytest messaging_app/messaging_app/tests --html=reports/report.h
                 sh '''
 #!/bin/bash -e
 ${DOCKER_PATH} build --no-cache -t ${IMAGE_NAME}:${IMAGE_TAG} -f messaging_app/Dockerfile messaging_app
-'''
+                '''
             }
         }
 
@@ -78,21 +96,31 @@ ${DOCKER_PATH} build --no-cache -t ${IMAGE_NAME}:${IMAGE_TAG} -f messaging_app/D
                     sh '''
 #!/bin/bash -e
 ${DOCKER_PATH} push ${IMAGE_NAME}:${IMAGE_TAG}
-'''
+                    '''
                 }
             }
         }
     }
 
     post {
+        always {
+            echo 'Cleaning up workspace...'
+            sh '''
+#!/bin/bash -e
+rm -rf ${VENV_DIR}
+rm -rf reports
+# Optionally remove current Docker image if needed
+# ${DOCKER_PATH} rmi -f ${IMAGE_NAME}:${IMAGE_TAG} || true
+            '''
+            archiveArtifacts artifacts: 'reports/**/*.xml, reports/**/*.html', fingerprint: true
+        }
+
         success {
             echo 'Build, test, and Docker push completed successfully!'
         }
+
         failure {
             echo 'Build or push failed. Check console output for details.'
-        }
-        always {
-            archiveArtifacts artifacts: 'reports/**/*.xml, reports/**/*.html', fingerprint: true
         }
     }
 }
