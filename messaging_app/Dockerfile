@@ -1,10 +1,4 @@
-FROM python:3.10-slim AS base
-
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PATH="/app/venv/bin:$PATH"
-
+FROM python:3.10
 WORKDIR /app
 
 # Install system dependencies (MySQL client, build tools)
@@ -16,19 +10,18 @@ RUN apt-get clean && \
         libmariadb-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Create virtual environment
-RUN python -m venv /app/venv
+# Copy entrypoint script and make it executable
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Copy requirements and install Python dependencies
+# Copy requirements and install dependencies
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Copy project files
 COPY . .
 
-# Make entrypoint script executable
-RUN chmod +x /entrypoint.sh
-
+# Expose Django port
 EXPOSE 8000
 
 # Non-root user
