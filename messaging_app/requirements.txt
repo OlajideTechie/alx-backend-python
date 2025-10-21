@@ -28,3 +28,5 @@ requests==2.32.4
 PyJWT==2.10.1
 python-dateutil==2.9.0.post0
 PyYAML==6.0.2
+pytest
+pytest-html
