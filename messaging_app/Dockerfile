@@ -1,34 +1,46 @@
-# Use Python 3.10 base image
-FROM python:3.10
+# Start with a lightweight Python base image
+FROM python:3.10-slim AS base
 
-# Set environment variables (recommended)
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PATH="/app/venv/bin:$PATH"
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies for MySQL
-RUN apt-get update && apt-get install -y \
-    default-libmysqlclient-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+# Install system dependencies (MySQL client, build tools)
+RUN apt-get update --fix-missing && \
+    apt-get install -y --no-install-recommends \
+        gcc \
+        pkg-config \
+        libmariadb-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy requirements.txt and install dependencies
-COPY messaging_app/requirements.txt .
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+# Create and activate a virtual environment
+RUN python -m venv /app/venv
 
-# 
-COPY messaging_app/ . 
+# Copy only requirements first (for better caching)
+COPY requirements.txt .
 
-# Expose Django default port
-EXPOSE 8000 
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
+# Copy project files into the image
+COPY . .
 
-#Copy entrypoint script and give execution permissions
-COPY entrypoint.sh /entrypoint.sh
+# Make entrypoint script executable
 RUN chmod +x /entrypoint.sh
 
-# Command to run Django server
+# Expose Django’s default port
+EXPOSE 8000
+
+# Use a non-root user (security best practice)
+RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app
+USER appuser
+
+# Run the Django app
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
