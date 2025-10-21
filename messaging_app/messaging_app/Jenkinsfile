@@ -36,7 +36,7 @@ pipeline {
                 echo 'Running pytest tests...'
                 sh '''
                     source ${VENV_DIR}/bin/activate
-                    ${VENV_DIR}/bin/pytest messaging_app/tests --junitxml=reports/test-results.xml
+                    ${VENV_DIR}/bin/pytest messaging_app/messaging_app/tests --junitxml=reports/test-results.xml
                 '''
             }
             post {
@@ -51,7 +51,7 @@ pipeline {
                 echo 'Generating pytest HTML report...'
                 sh '''
                     source ${VENV_DIR}/bin/activate
-                    ${VENV_DIR}/bin/pytest messaging_app/tests --html=reports/report.html --self-contained-html
+                    ${VENV_DIR}/bin/pytest messaging_app/messaging_app/tests --html=reports/report.html --self-contained-html
                 '''
             }
         }
