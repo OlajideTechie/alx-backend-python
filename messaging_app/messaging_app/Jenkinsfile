@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.10'
+            args '-u root'
+        }
+    }
 
     environment {
         GITHUB_CREDENTIALS = credentials('github-credentials-id')
@@ -7,8 +12,6 @@ pipeline {
         VENV_DIR = 'venv'
         IMAGE_NAME = 'oolajide91/messaging_app'
         IMAGE_TAG = 'latest'
-        PYTHON_PATH = '/Users/olajideojo/Desktop/alx-backend-python/venv/bin/python3'
-        DOCKER_PATH = '/usr/local/bin/docker'
         KEEP_IMAGES = 3
     }
 
@@ -21,10 +24,10 @@ pipeline {
 rm -rf ${VENV_DIR}
 rm -rf reports
 # Keep last ${KEEP_IMAGES} Docker images, delete older ones
-IMAGE_IDS=$(${DOCKER_PATH} images --format '{{.Repository}} {{.Tag}} {{.ID}}' | grep ${IMAGE_NAME} | sort -r | awk 'NR>${KEEP_IMAGES} {print $3}')
+IMAGE_IDS=$(docker images --format '{{.Repository}} {{.Tag}} {{.ID}}' | grep ${IMAGE_NAME} | sort -r | awk 'NR>${KEEP_IMAGES} {print $3}')
 if [ ! -z "$IMAGE_IDS" ]; then
     echo "Removing old Docker images..."
-    ${DOCKER_PATH} rmi -f $IMAGE_IDS || true
+    docker rmi -f $IMAGE_IDS || true
 fi
                 '''
             }
@@ -44,7 +47,7 @@ fi
                 echo 'Installing Python dependencies...'
                 sh '''
 #!/bin/bash -e
-${PYTHON_PATH} -m venv ${VENV_DIR}
+python -m venv ${VENV_DIR}
 source ${VENV_DIR}/bin/activate
 ${VENV_DIR}/pip3 install --upgrade pip
 ${VENV_DIR}/pip3 install -r messaging_app/requirements.txt
@@ -84,7 +87,7 @@ ${VENV_DIR}/pytest messaging_app/messaging_app/tests --html=reports/report.html 
                 echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
                 sh '''
 #!/bin/bash -e
-${DOCKER_PATH} build --no-cache -t ${IMAGE_NAME}:${IMAGE_TAG} -f messaging_app/Dockerfile messaging_app
+docker build --no-cache -t ${IMAGE_NAME}:${IMAGE_TAG} -f messaging_app/Dockerfile messaging_app
                 '''
             }
         }
@@ -95,7 +98,7 @@ ${DOCKER_PATH} build --no-cache -t ${IMAGE_NAME}:${IMAGE_TAG} -f messaging_app/D
                 withDockerRegistry([credentialsId: 'dockerhub-credentials-id', url: '']) {
                     sh '''
 #!/bin/bash -e
-${DOCKER_PATH} push ${IMAGE_NAME}:${IMAGE_TAG}
+docker push ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
@@ -110,7 +113,7 @@ ${DOCKER_PATH} push ${IMAGE_NAME}:${IMAGE_TAG}
 rm -rf ${VENV_DIR}
 rm -rf reports
 # Optionally remove current Docker image if needed
-# ${DOCKER_PATH} rmi -f ${IMAGE_NAME}:${IMAGE_TAG} || true
+# docker rmi -f ${IMAGE_NAME}:${IMAGE_TAG} || true
             '''
             archiveArtifacts artifacts: 'reports/**/*.xml, reports/**/*.html', fingerprint: true
         }
